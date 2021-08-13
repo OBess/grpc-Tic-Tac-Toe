@@ -1,0 +1,33 @@
+syntax = "proto3";
+package GameService;
+
+
+// --------------------------
+message ReadyRequest{
+    bool ready = 1;
+}
+
+message ReadyResponse{
+    bool side = 1;
+}
+
+
+// --------------------------
+message StepRequest{
+    int32 x = 1;
+    int32 y = 2;
+    bool side = 3;
+}
+
+message MapResponse{
+    bool hasError = 1;
+    string msg = 2;
+    string map = 3;
+}
+
+
+// --------------------------
+service GameService{
+    rpc StartGame(ReadyRequest) returns (ReadyResponse);
+    rpc MakeStep(StepRequest) returns (MapResponse);
+}
