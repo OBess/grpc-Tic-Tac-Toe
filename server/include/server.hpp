@@ -19,30 +19,46 @@ using grpc::ServerBuilder;
 using grpc::ServerContext;
 using grpc::Status;
 
+using GameService::MapResponse;
 using GameService::ReadyRequest;
 using GameService::ReadyResponse;
 using GameService::StepRequest;
-using GameService::MapResponse;
 
 class GameServerImpl final : public GameService::GameService::Service
 {
 private:
+    // Map of game (3x3)
     std::string m_map{};
 
-    int m_sides{};
+    // Count players
+    int m_players{};
 
 public:
     GameServerImpl() = default;
     ~GameServerImpl() = default;
 
-    Status StartGame(ServerContext* context, const ReadyRequest* request, ReadyResponse* response) override
+    // Block to copy
+    GameServerImpl(const GameServerImpl &) = delete;
+    GameServerImpl(GameServerImpl &&) = delete;
+
+    // Main method of start
+    void Run() noexcept
+    {
+    }
+
+    // Network methods
+    Status StartGame(ServerContext *context, const ReadyRequest *request, ReadyResponse *response) override
     {
         return Status::OK;
     }
 
-    Status MakeStep(ServerContext* context, const StepRequest* request, MapResponse* response) override
+    Status MakeStep(ServerContext *context, const StepRequest *request, MapResponse *response) override
     {
         response->set_map(m_map);
         return Status::OK;
     }
+
+    // Block to copy
+    GameServerImpl &operator=(const GameServerImpl &) = delete;
+    GameServerImpl &operator=(const GameServerImpl &&) = delete;
 };
