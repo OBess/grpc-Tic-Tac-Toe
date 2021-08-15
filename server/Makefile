@@ -9,7 +9,7 @@ TRUE = true
 FALSE = false
 
 # Chosen compiler
-CXX = gcc
+CXX = g++
 
 # Chosen modes
 DEBUG_MODE = Debug
@@ -21,12 +21,15 @@ AUTO_RUN = $(FALSE)
 # Flags for two build modes
 Release_FLAGS = -O3 -std=c++17 -s -DNDEBUG
 # Debug_FLAGS = -O0 -std=c++17 -g -Wall -pthread -lprotobuf -lpthread
-Debug_FLAGS = -O0 -std=c++17 -g -Wall -pthread -lpthread
+Debug_FLAGS = -O0 -std=c++17 -g -Wall
 
 # EXECUTABLE - main filename
 # SOURCES - returns list of all .cpp files
 EXECUTABLE = main
 SOURCES = $(shell find ./include -name '*.cpp' && find ./include -name '*.cc')
+
+LIB_PATH = -L/usr/src/environment/vcpkg/installed/x64-linux/lib
+LIBS = -lstdc++ $(LIB_PATH) -lz -lpthread -lssl -lprotobuf -lgrpc -lgrpc++
 
 # TEST - filename for testing
 TEST = tests
@@ -41,7 +44,7 @@ endif
 # Build project
 build:
 	@mkdir -p $(BUILD_MODE)
-	@sudo $(CXX) $($(BUILD_MODE)_FLAGS) $(EXECUTABLE).cpp $(SOURCES) -o $(BUILD_MODE)/$(EXECUTABLE)
+	@$(CXX) $($(BUILD_MODE)_FLAGS) $(EXECUTABLE).cpp $(SOURCES) -o $(BUILD_MODE)/$(EXECUTABLE) $(LIBS)
 	@echo "makefile: \033[;32mBuild have done!\033[0m"
 
 # Run program after build
