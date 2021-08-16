@@ -32,7 +32,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ReadyRequestDefaultTypeInternal
 constexpr ReadyResponse::ReadyResponse(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : map_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
-  , side_(false){}
+  , side_(0){}
 struct ReadyResponseDefaultTypeInternal {
   constexpr ReadyResponseDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -46,7 +46,7 @@ constexpr StepRequest::StepRequest(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : x_(0)
   , y_(0)
-  , side_(false){}
+  , side_(0){}
 struct StepRequestDefaultTypeInternal {
   constexpr StepRequestDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -56,10 +56,33 @@ struct StepRequestDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT StepRequestDefaultTypeInternal _StepRequest_default_instance_;
-constexpr MapResponse::MapResponse(
+constexpr StepResponse::StepResponse(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : map_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
   , win_(false){}
+struct StepResponseDefaultTypeInternal {
+  constexpr StepResponseDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~StepResponseDefaultTypeInternal() {}
+  union {
+    StepResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT StepResponseDefaultTypeInternal _StepResponse_default_instance_;
+constexpr MapRequest::MapRequest(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized){}
+struct MapRequestDefaultTypeInternal {
+  constexpr MapRequestDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~MapRequestDefaultTypeInternal() {}
+  union {
+    MapRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT MapRequestDefaultTypeInternal _MapRequest_default_instance_;
+constexpr MapResponse::MapResponse(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : map_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
 struct MapResponseDefaultTypeInternal {
   constexpr MapResponseDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -70,7 +93,7 @@ struct MapResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT MapResponseDefaultTypeInternal _MapResponse_default_instance_;
 }  // namespace GameService
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_game_5fservice_2eproto[4];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_game_5fservice_2eproto[6];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_game_5fservice_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_game_5fservice_2eproto = nullptr;
 
@@ -97,42 +120,60 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_game_5fservice_2eproto::offset
   PROTOBUF_FIELD_OFFSET(::GameService::StepRequest, y_),
   PROTOBUF_FIELD_OFFSET(::GameService::StepRequest, side_),
   ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::GameService::StepResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::GameService::StepResponse, win_),
+  PROTOBUF_FIELD_OFFSET(::GameService::StepResponse, map_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::GameService::MapRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::GameService::MapResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::GameService::MapResponse, win_),
   PROTOBUF_FIELD_OFFSET(::GameService::MapResponse, map_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::GameService::ReadyRequest)},
   { 6, -1, sizeof(::GameService::ReadyResponse)},
   { 13, -1, sizeof(::GameService::StepRequest)},
-  { 21, -1, sizeof(::GameService::MapResponse)},
+  { 21, -1, sizeof(::GameService::StepResponse)},
+  { 28, -1, sizeof(::GameService::MapRequest)},
+  { 33, -1, sizeof(::GameService::MapResponse)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::GameService::_ReadyRequest_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::GameService::_ReadyResponse_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::GameService::_StepRequest_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::GameService::_StepResponse_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::GameService::_MapRequest_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::GameService::_MapResponse_default_instance_),
 };
 
 const char descriptor_table_protodef_game_5fservice_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\022game_service.proto\022\013GameService\"\035\n\014Rea"
   "dyRequest\022\r\n\005ready\030\001 \001(\010\"*\n\rReadyRespons"
-  "e\022\014\n\004side\030\001 \001(\010\022\013\n\003map\030\002 \001(\014\"1\n\013StepRequ"
-  "est\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\022\014\n\004side\030\003 \001(\010\""
-  "\'\n\013MapResponse\022\013\n\003win\030\001 \001(\010\022\013\n\003map\030\002 \001(\014"
-  "2\221\001\n\013GameService\022B\n\tStartGame\022\031.GameServ"
-  "ice.ReadyRequest\032\032.GameService.ReadyResp"
-  "onse\022>\n\010MakeStep\022\030.GameService.StepReque"
-  "st\032\030.GameService.MapResponseb\006proto3"
+  "e\022\014\n\004side\030\001 \001(\005\022\013\n\003map\030\002 \001(\014\"1\n\013StepRequ"
+  "est\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\022\014\n\004side\030\003 \001(\005\""
+  "(\n\014StepResponse\022\013\n\003win\030\001 \001(\010\022\013\n\003map\030\002 \001("
+  "\014\"\014\n\nMapRequest\"\032\n\013MapResponse\022\013\n\003map\030\001 "
+  "\001(\0142\317\001\n\013GameService\022B\n\tStartGame\022\031.GameS"
+  "ervice.ReadyRequest\032\032.GameService.ReadyR"
+  "esponse\022\?\n\010MakeStep\022\030.GameService.StepRe"
+  "quest\032\031.GameService.StepResponse\022;\n\006GetM"
+  "ap\022\027.GameService.MapRequest\032\030.GameServic"
+  "e.MapResponseb\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_game_5fservice_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_game_5fservice_2eproto = {
-  false, false, 356, descriptor_table_protodef_game_5fservice_2eproto, "game_service.proto", 
-  &descriptor_table_game_5fservice_2eproto_once, nullptr, 0, 4,
+  false, false, 461, descriptor_table_protodef_game_5fservice_2eproto, "game_service.proto", 
+  &descriptor_table_game_5fservice_2eproto_once, nullptr, 0, 6,
   schemas, file_default_instances, TableStruct_game_5fservice_2eproto::offsets,
   file_level_metadata_game_5fservice_2eproto, file_level_enum_descriptors_game_5fservice_2eproto, file_level_service_descriptors_game_5fservice_2eproto,
 };
@@ -359,7 +400,7 @@ ReadyResponse::ReadyResponse(const ReadyResponse& from)
 
 void ReadyResponse::SharedCtor() {
 map_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-side_ = false;
+side_ = 0;
 }
 
 ReadyResponse::~ReadyResponse() {
@@ -390,7 +431,7 @@ void ReadyResponse::Clear() {
   (void) cached_has_bits;
 
   map_.ClearToEmpty();
-  side_ = false;
+  side_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -401,7 +442,7 @@ const char* ReadyResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
     switch (tag >> 3) {
-      // bool side = 1;
+      // int32 side = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
           side_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
@@ -444,10 +485,10 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // bool side = 1;
+  // int32 side = 1;
   if (this->side() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_side(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_side(), target);
   }
 
   // bytes map = 2;
@@ -479,9 +520,11 @@ size_t ReadyResponse::ByteSizeLong() const {
         this->_internal_map());
   }
 
-  // bool side = 1;
+  // int32 side = 1;
   if (this->side() != 0) {
-    total_size += 1 + 1;
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_side());
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -634,7 +677,7 @@ const char* StepRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // bool side = 3;
+      // int32 side = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
           side_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
@@ -681,10 +724,10 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_y(), target);
   }
 
-  // bool side = 3;
+  // int32 side = 3;
   if (this->side() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(3, this->_internal_side(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(3, this->_internal_side(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -717,9 +760,11 @@ size_t StepRequest::ByteSizeLong() const {
         this->_internal_y());
   }
 
-  // bool side = 3;
+  // int32 side = 3;
   if (this->side() != 0) {
-    total_size += 1 + 1;
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_side());
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -800,17 +845,17 @@ void StepRequest::InternalSwap(StepRequest* other) {
 
 // ===================================================================
 
-class MapResponse::_Internal {
+class StepResponse::_Internal {
  public:
 };
 
-MapResponse::MapResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+StepResponse::StepResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
   RegisterArenaDtor(arena);
-  // @@protoc_insertion_point(arena_constructor:GameService.MapResponse)
+  // @@protoc_insertion_point(arena_constructor:GameService.StepResponse)
 }
-MapResponse::MapResponse(const MapResponse& from)
+StepResponse::StepResponse(const StepResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   map_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
@@ -819,37 +864,37 @@ MapResponse::MapResponse(const MapResponse& from)
       GetArena());
   }
   win_ = from.win_;
-  // @@protoc_insertion_point(copy_constructor:GameService.MapResponse)
+  // @@protoc_insertion_point(copy_constructor:GameService.StepResponse)
 }
 
-void MapResponse::SharedCtor() {
+void StepResponse::SharedCtor() {
 map_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 win_ = false;
 }
 
-MapResponse::~MapResponse() {
-  // @@protoc_insertion_point(destructor:GameService.MapResponse)
+StepResponse::~StepResponse() {
+  // @@protoc_insertion_point(destructor:GameService.StepResponse)
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-void MapResponse::SharedDtor() {
+void StepResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArena() == nullptr);
   map_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
-void MapResponse::ArenaDtor(void* object) {
-  MapResponse* _this = reinterpret_cast< MapResponse* >(object);
+void StepResponse::ArenaDtor(void* object) {
+  StepResponse* _this = reinterpret_cast< StepResponse* >(object);
   (void)_this;
 }
-void MapResponse::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+void StepResponse::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
 }
-void MapResponse::SetCachedSize(int size) const {
+void StepResponse::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
 
-void MapResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:GameService.MapResponse)
+void StepResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:GameService.StepResponse)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -859,7 +904,7 @@ void MapResponse::Clear() {
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* MapResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* StepResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
@@ -903,9 +948,9 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* MapResponse::_InternalSerialize(
+::PROTOBUF_NAMESPACE_ID::uint8* StepResponse::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:GameService.MapResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:GameService.StepResponse)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -925,12 +970,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:GameService.MapResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:GameService.StepResponse)
   return target;
 }
 
-size_t MapResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:GameService.MapResponse)
+size_t StepResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:GameService.StepResponse)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -947,6 +992,362 @@ size_t MapResponse::ByteSizeLong() const {
   // bool win = 1;
   if (this->win() != 0) {
     total_size += 1 + 1;
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void StepResponse::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:GameService.StepResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  const StepResponse* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<StepResponse>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:GameService.StepResponse)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:GameService.StepResponse)
+    MergeFrom(*source);
+  }
+}
+
+void StepResponse::MergeFrom(const StepResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:GameService.StepResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.map().size() > 0) {
+    _internal_set_map(from._internal_map());
+  }
+  if (from.win() != 0) {
+    _internal_set_win(from._internal_win());
+  }
+}
+
+void StepResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:GameService.StepResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void StepResponse::CopyFrom(const StepResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:GameService.StepResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool StepResponse::IsInitialized() const {
+  return true;
+}
+
+void StepResponse::InternalSwap(StepResponse* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  map_.Swap(&other->map_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  swap(win_, other->win_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata StepResponse::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+class MapRequest::_Internal {
+ public:
+};
+
+MapRequest::MapRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:GameService.MapRequest)
+}
+MapRequest::MapRequest(const MapRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:GameService.MapRequest)
+}
+
+void MapRequest::SharedCtor() {
+}
+
+MapRequest::~MapRequest() {
+  // @@protoc_insertion_point(destructor:GameService.MapRequest)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void MapRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+}
+
+void MapRequest::ArenaDtor(void* object) {
+  MapRequest* _this = reinterpret_cast< MapRequest* >(object);
+  (void)_this;
+}
+void MapRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void MapRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void MapRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:GameService.MapRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* MapRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* MapRequest::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:GameService.MapRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:GameService.MapRequest)
+  return target;
+}
+
+size_t MapRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:GameService.MapRequest)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void MapRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:GameService.MapRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const MapRequest* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<MapRequest>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:GameService.MapRequest)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:GameService.MapRequest)
+    MergeFrom(*source);
+  }
+}
+
+void MapRequest::MergeFrom(const MapRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:GameService.MapRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+}
+
+void MapRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:GameService.MapRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void MapRequest::CopyFrom(const MapRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:GameService.MapRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool MapRequest::IsInitialized() const {
+  return true;
+}
+
+void MapRequest::InternalSwap(MapRequest* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata MapRequest::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+class MapResponse::_Internal {
+ public:
+};
+
+MapResponse::MapResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:GameService.MapResponse)
+}
+MapResponse::MapResponse(const MapResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  map_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_map().empty()) {
+    map_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_map(), 
+      GetArena());
+  }
+  // @@protoc_insertion_point(copy_constructor:GameService.MapResponse)
+}
+
+void MapResponse::SharedCtor() {
+map_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+MapResponse::~MapResponse() {
+  // @@protoc_insertion_point(destructor:GameService.MapResponse)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void MapResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  map_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void MapResponse::ArenaDtor(void* object) {
+  MapResponse* _this = reinterpret_cast< MapResponse* >(object);
+  (void)_this;
+}
+void MapResponse::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void MapResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void MapResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:GameService.MapResponse)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  map_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* MapResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // bytes map = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_map();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* MapResponse::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:GameService.MapResponse)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bytes map = 1;
+  if (this->map().size() > 0) {
+    target = stream->WriteBytesMaybeAliased(
+        1, this->_internal_map(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:GameService.MapResponse)
+  return target;
+}
+
+size_t MapResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:GameService.MapResponse)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bytes map = 1;
+  if (this->map().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+        this->_internal_map());
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -983,9 +1384,6 @@ void MapResponse::MergeFrom(const MapResponse& from) {
   if (from.map().size() > 0) {
     _internal_set_map(from._internal_map());
   }
-  if (from.win() != 0) {
-    _internal_set_win(from._internal_win());
-  }
 }
 
 void MapResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -1010,7 +1408,6 @@ void MapResponse::InternalSwap(MapResponse* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   map_.Swap(&other->map_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  swap(win_, other->win_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata MapResponse::GetMetadata() const {
@@ -1029,6 +1426,12 @@ template<> PROTOBUF_NOINLINE ::GameService::ReadyResponse* Arena::CreateMaybeMes
 }
 template<> PROTOBUF_NOINLINE ::GameService::StepRequest* Arena::CreateMaybeMessage< ::GameService::StepRequest >(Arena* arena) {
   return Arena::CreateMessageInternal< ::GameService::StepRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::GameService::StepResponse* Arena::CreateMaybeMessage< ::GameService::StepResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::GameService::StepResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::GameService::MapRequest* Arena::CreateMaybeMessage< ::GameService::MapRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::GameService::MapRequest >(arena);
 }
 template<> PROTOBUF_NOINLINE ::GameService::MapResponse* Arena::CreateMaybeMessage< ::GameService::MapResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::GameService::MapResponse >(arena);

@@ -46,7 +46,7 @@ struct TableStruct_game_5fservice_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[4]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[6]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -55,6 +55,9 @@ struct TableStruct_game_5fservice_2eproto {
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_game_5fservice_2eproto;
 ::PROTOBUF_NAMESPACE_ID::Metadata descriptor_table_game_5fservice_2eproto_metadata_getter(int index);
 namespace GameService {
+class MapRequest;
+struct MapRequestDefaultTypeInternal;
+extern MapRequestDefaultTypeInternal _MapRequest_default_instance_;
 class MapResponse;
 struct MapResponseDefaultTypeInternal;
 extern MapResponseDefaultTypeInternal _MapResponse_default_instance_;
@@ -67,12 +70,17 @@ extern ReadyResponseDefaultTypeInternal _ReadyResponse_default_instance_;
 class StepRequest;
 struct StepRequestDefaultTypeInternal;
 extern StepRequestDefaultTypeInternal _StepRequest_default_instance_;
+class StepResponse;
+struct StepResponseDefaultTypeInternal;
+extern StepResponseDefaultTypeInternal _StepResponse_default_instance_;
 }  // namespace GameService
 PROTOBUF_NAMESPACE_OPEN
+template<> ::GameService::MapRequest* Arena::CreateMaybeMessage<::GameService::MapRequest>(Arena*);
 template<> ::GameService::MapResponse* Arena::CreateMaybeMessage<::GameService::MapResponse>(Arena*);
 template<> ::GameService::ReadyRequest* Arena::CreateMaybeMessage<::GameService::ReadyRequest>(Arena*);
 template<> ::GameService::ReadyResponse* Arena::CreateMaybeMessage<::GameService::ReadyResponse>(Arena*);
 template<> ::GameService::StepRequest* Arena::CreateMaybeMessage<::GameService::StepRequest>(Arena*);
+template<> ::GameService::StepResponse* Arena::CreateMaybeMessage<::GameService::StepResponse>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace GameService {
 
@@ -347,13 +355,13 @@ class ReadyResponse PROTOBUF_FINAL :
   std::string* _internal_mutable_map();
   public:
 
-  // bool side = 1;
+  // int32 side = 1;
   void clear_side();
-  bool side() const;
-  void set_side(bool value);
+  ::PROTOBUF_NAMESPACE_ID::int32 side() const;
+  void set_side(::PROTOBUF_NAMESPACE_ID::int32 value);
   private:
-  bool _internal_side() const;
-  void _internal_set_side(bool value);
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_side() const;
+  void _internal_set_side(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
   // @@protoc_insertion_point(class_scope:GameService.ReadyResponse)
@@ -364,7 +372,7 @@ class ReadyResponse PROTOBUF_FINAL :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr map_;
-  bool side_;
+  ::PROTOBUF_NAMESPACE_ID::int32 side_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_game_5fservice_2eproto;
 };
@@ -505,13 +513,13 @@ class StepRequest PROTOBUF_FINAL :
   void _internal_set_y(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
-  // bool side = 3;
+  // int32 side = 3;
   void clear_side();
-  bool side() const;
-  void set_side(bool value);
+  ::PROTOBUF_NAMESPACE_ID::int32 side() const;
+  void set_side(::PROTOBUF_NAMESPACE_ID::int32 value);
   private:
-  bool _internal_side() const;
-  void _internal_set_side(bool value);
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_side() const;
+  void _internal_set_side(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
   // @@protoc_insertion_point(class_scope:GameService.StepRequest)
@@ -523,7 +531,286 @@ class StepRequest PROTOBUF_FINAL :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::int32 x_;
   ::PROTOBUF_NAMESPACE_ID::int32 y_;
-  bool side_;
+  ::PROTOBUF_NAMESPACE_ID::int32 side_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_game_5fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
+class StepResponse PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:GameService.StepResponse) */ {
+ public:
+  inline StepResponse() : StepResponse(nullptr) {}
+  virtual ~StepResponse();
+  explicit constexpr StepResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  StepResponse(const StepResponse& from);
+  StepResponse(StepResponse&& from) noexcept
+    : StepResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline StepResponse& operator=(const StepResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline StepResponse& operator=(StepResponse&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const StepResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const StepResponse* internal_default_instance() {
+    return reinterpret_cast<const StepResponse*>(
+               &_StepResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(StepResponse& a, StepResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(StepResponse* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(StepResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline StepResponse* New() const final {
+    return CreateMaybeMessage<StepResponse>(nullptr);
+  }
+
+  StepResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<StepResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const StepResponse& from);
+  void MergeFrom(const StepResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(StepResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "GameService.StepResponse";
+  }
+  protected:
+  explicit StepResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    return ::descriptor_table_game_5fservice_2eproto_metadata_getter(kIndexInFileMessages);
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMapFieldNumber = 2,
+    kWinFieldNumber = 1,
+  };
+  // bytes map = 2;
+  void clear_map();
+  const std::string& map() const;
+  void set_map(const std::string& value);
+  void set_map(std::string&& value);
+  void set_map(const char* value);
+  void set_map(const void* value, size_t size);
+  std::string* mutable_map();
+  std::string* release_map();
+  void set_allocated_map(std::string* map);
+  private:
+  const std::string& _internal_map() const;
+  void _internal_set_map(const std::string& value);
+  std::string* _internal_mutable_map();
+  public:
+
+  // bool win = 1;
+  void clear_win();
+  bool win() const;
+  void set_win(bool value);
+  private:
+  bool _internal_win() const;
+  void _internal_set_win(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:GameService.StepResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr map_;
+  bool win_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_game_5fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
+class MapRequest PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:GameService.MapRequest) */ {
+ public:
+  inline MapRequest() : MapRequest(nullptr) {}
+  virtual ~MapRequest();
+  explicit constexpr MapRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  MapRequest(const MapRequest& from);
+  MapRequest(MapRequest&& from) noexcept
+    : MapRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline MapRequest& operator=(const MapRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MapRequest& operator=(MapRequest&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const MapRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MapRequest* internal_default_instance() {
+    return reinterpret_cast<const MapRequest*>(
+               &_MapRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(MapRequest& a, MapRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MapRequest* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MapRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline MapRequest* New() const final {
+    return CreateMaybeMessage<MapRequest>(nullptr);
+  }
+
+  MapRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<MapRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const MapRequest& from);
+  void MergeFrom(const MapRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(MapRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "GameService.MapRequest";
+  }
+  protected:
+  explicit MapRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    return ::descriptor_table_game_5fservice_2eproto_metadata_getter(kIndexInFileMessages);
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:GameService.MapRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_game_5fservice_2eproto;
 };
@@ -572,7 +859,7 @@ class MapResponse PROTOBUF_FINAL :
                &_MapResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    5;
 
   friend void swap(MapResponse& a, MapResponse& b) {
     a.Swap(&b);
@@ -642,10 +929,9 @@ class MapResponse PROTOBUF_FINAL :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kMapFieldNumber = 2,
-    kWinFieldNumber = 1,
+    kMapFieldNumber = 1,
   };
-  // bytes map = 2;
+  // bytes map = 1;
   void clear_map();
   const std::string& map() const;
   void set_map(const std::string& value);
@@ -661,15 +947,6 @@ class MapResponse PROTOBUF_FINAL :
   std::string* _internal_mutable_map();
   public:
 
-  // bool win = 1;
-  void clear_win();
-  bool win() const;
-  void set_win(bool value);
-  private:
-  bool _internal_win() const;
-  void _internal_set_win(bool value);
-  public:
-
   // @@protoc_insertion_point(class_scope:GameService.MapResponse)
  private:
   class _Internal;
@@ -678,7 +955,6 @@ class MapResponse PROTOBUF_FINAL :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr map_;
-  bool win_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_game_5fservice_2eproto;
 };
@@ -717,22 +993,22 @@ inline void ReadyRequest::set_ready(bool value) {
 
 // ReadyResponse
 
-// bool side = 1;
+// int32 side = 1;
 inline void ReadyResponse::clear_side() {
-  side_ = false;
+  side_ = 0;
 }
-inline bool ReadyResponse::_internal_side() const {
+inline ::PROTOBUF_NAMESPACE_ID::int32 ReadyResponse::_internal_side() const {
   return side_;
 }
-inline bool ReadyResponse::side() const {
+inline ::PROTOBUF_NAMESPACE_ID::int32 ReadyResponse::side() const {
   // @@protoc_insertion_point(field_get:GameService.ReadyResponse.side)
   return _internal_side();
 }
-inline void ReadyResponse::_internal_set_side(bool value) {
+inline void ReadyResponse::_internal_set_side(::PROTOBUF_NAMESPACE_ID::int32 value) {
   
   side_ = value;
 }
-inline void ReadyResponse::set_side(bool value) {
+inline void ReadyResponse::set_side(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_side(value);
   // @@protoc_insertion_point(field_set:GameService.ReadyResponse.side)
 }
@@ -842,51 +1118,120 @@ inline void StepRequest::set_y(::PROTOBUF_NAMESPACE_ID::int32 value) {
   // @@protoc_insertion_point(field_set:GameService.StepRequest.y)
 }
 
-// bool side = 3;
+// int32 side = 3;
 inline void StepRequest::clear_side() {
-  side_ = false;
+  side_ = 0;
 }
-inline bool StepRequest::_internal_side() const {
+inline ::PROTOBUF_NAMESPACE_ID::int32 StepRequest::_internal_side() const {
   return side_;
 }
-inline bool StepRequest::side() const {
+inline ::PROTOBUF_NAMESPACE_ID::int32 StepRequest::side() const {
   // @@protoc_insertion_point(field_get:GameService.StepRequest.side)
   return _internal_side();
 }
-inline void StepRequest::_internal_set_side(bool value) {
+inline void StepRequest::_internal_set_side(::PROTOBUF_NAMESPACE_ID::int32 value) {
   
   side_ = value;
 }
-inline void StepRequest::set_side(bool value) {
+inline void StepRequest::set_side(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_side(value);
   // @@protoc_insertion_point(field_set:GameService.StepRequest.side)
 }
 
 // -------------------------------------------------------------------
 
-// MapResponse
+// StepResponse
 
 // bool win = 1;
-inline void MapResponse::clear_win() {
+inline void StepResponse::clear_win() {
   win_ = false;
 }
-inline bool MapResponse::_internal_win() const {
+inline bool StepResponse::_internal_win() const {
   return win_;
 }
-inline bool MapResponse::win() const {
-  // @@protoc_insertion_point(field_get:GameService.MapResponse.win)
+inline bool StepResponse::win() const {
+  // @@protoc_insertion_point(field_get:GameService.StepResponse.win)
   return _internal_win();
 }
-inline void MapResponse::_internal_set_win(bool value) {
+inline void StepResponse::_internal_set_win(bool value) {
   
   win_ = value;
 }
-inline void MapResponse::set_win(bool value) {
+inline void StepResponse::set_win(bool value) {
   _internal_set_win(value);
-  // @@protoc_insertion_point(field_set:GameService.MapResponse.win)
+  // @@protoc_insertion_point(field_set:GameService.StepResponse.win)
 }
 
 // bytes map = 2;
+inline void StepResponse::clear_map() {
+  map_.ClearToEmpty();
+}
+inline const std::string& StepResponse::map() const {
+  // @@protoc_insertion_point(field_get:GameService.StepResponse.map)
+  return _internal_map();
+}
+inline void StepResponse::set_map(const std::string& value) {
+  _internal_set_map(value);
+  // @@protoc_insertion_point(field_set:GameService.StepResponse.map)
+}
+inline std::string* StepResponse::mutable_map() {
+  // @@protoc_insertion_point(field_mutable:GameService.StepResponse.map)
+  return _internal_mutable_map();
+}
+inline const std::string& StepResponse::_internal_map() const {
+  return map_.Get();
+}
+inline void StepResponse::_internal_set_map(const std::string& value) {
+  
+  map_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void StepResponse::set_map(std::string&& value) {
+  
+  map_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:GameService.StepResponse.map)
+}
+inline void StepResponse::set_map(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  map_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:GameService.StepResponse.map)
+}
+inline void StepResponse::set_map(const void* value,
+    size_t size) {
+  
+  map_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:GameService.StepResponse.map)
+}
+inline std::string* StepResponse::_internal_mutable_map() {
+  
+  return map_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* StepResponse::release_map() {
+  // @@protoc_insertion_point(field_release:GameService.StepResponse.map)
+  return map_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void StepResponse::set_allocated_map(std::string* map) {
+  if (map != nullptr) {
+    
+  } else {
+    
+  }
+  map_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), map,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:GameService.StepResponse.map)
+}
+
+// -------------------------------------------------------------------
+
+// MapRequest
+
+// -------------------------------------------------------------------
+
+// MapResponse
+
+// bytes map = 1;
 inline void MapResponse::clear_map() {
   map_.ClearToEmpty();
 }
@@ -950,6 +1295,10 @@ inline void MapResponse::set_allocated_map(std::string* map) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

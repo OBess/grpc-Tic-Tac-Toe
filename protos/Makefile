@@ -1,6 +1,6 @@
 SOURCES = $(shell find . -name '*.proto')
 FROM = '.'
-DEST = './build'
+DEST = './include'
 PATH = /usr/src/environment/vcpkg/installed/x64-linux/tools/protobuf/
 # PATH = /usr/src/environment/vcpkg/buildtrees/protobuf/x64-linux-dbg/
 
@@ -11,6 +11,6 @@ all: fbuild
 	@echo "makefile: \033[;32mBuild have done!\033[0m"
 
 fbuild:
-	@if [ ! -d "build" ]; then \
-        mkdir build; \
+	@if [ ! -d "include" ]; then \
+        mkdir include; \
     fi

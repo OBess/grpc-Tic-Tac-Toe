@@ -8,7 +8,7 @@ message ReadyRequest{
 }
 
 message ReadyResponse{
-    bool side = 1;
+    int32 side = 1;
     bytes map = 2;
 }
 
@@ -17,17 +17,26 @@ message ReadyResponse{
 message StepRequest{
     int32 x = 1;
     int32 y = 2;
-    bool side = 3;
+    int32 side = 3;
+}
+
+message StepResponse{
+    bool win = 1;
+    bytes map = 2;
+}
+
+// --------------------------
+message MapRequest{
 }
 
 message MapResponse{
-    bool win = 1;
-    bytes map = 2;
+    bytes map = 1;
 }
 
 
 // --------------------------
 service GameService{
     rpc StartGame(ReadyRequest) returns (ReadyResponse);
-    rpc MakeStep(StepRequest) returns (MapResponse);
+    rpc MakeStep(StepRequest) returns (StepResponse);
+    rpc GetMap(MapRequest) returns (MapResponse);
 }
