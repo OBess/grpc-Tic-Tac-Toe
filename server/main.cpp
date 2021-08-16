@@ -6,6 +6,8 @@
 
 int main()
 {
-    std::cout << "Hellow\n";
+    std::cout << BLU << "Start of server!" << NC << std::endl;
+    server::Run("localhost:4030");
+    std::cout << BLU << "End of server!" << NC << std::endl;
     return EXIT_SUCCESS;
 }
