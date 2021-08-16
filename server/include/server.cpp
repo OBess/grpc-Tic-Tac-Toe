@@ -93,6 +93,7 @@ namespace server
         }
 
         GameServerImpl::GameServerImpl()
+            : m_lastTurn(2)
         {
             for (size_t i = 0; i < m_size; ++i)
             {
@@ -100,7 +101,6 @@ namespace server
                 for (size_t j = 0; j < m_size; ++j)
                     m_map[i].push_back(' ');
             }
-            m_lastVersMap = BuildMap();
         }
 
         // Network methods
@@ -109,8 +109,8 @@ namespace server
             if (m_players > 2)
                 return {grpc::StatusCode::UNAVAILABLE, "Two player are connected."};
 
-            response->set_map(m_lastVersMap);
-            response->set_side(m_players);
+            response->set_map(BuildMap());
+            response->set_id(m_players);
 
             std::cout << YEL << "Player " << m_players << " is connected." << NC << std::endl;
             ++m_players;
@@ -120,7 +120,7 @@ namespace server
 
         Status GameServerImpl::MakeStep(ServerContext *context, const StepRequest *request, StepResponse *response)
         {
-            if (request->side() % 2 == !m_turn)
+            if (request->id() == m_lastTurn)
                 return {grpc::StatusCode::PERMISSION_DENIED, "Not you turn."};
 
             auto x = request->x();
@@ -129,28 +129,25 @@ namespace server
             if (m_map[y][x] != ' ' or x >= m_size or y >= m_size)
                 return {grpc::StatusCode::PERMISSION_DENIED, "Block is filled or out of range."};
 
-            m_map[y][x] = (request->side() % 2 ? 'x' : 'o');
+            m_map[y][x] = (request->id() % 2 ? 'x' : 'o');
 
             response->set_win(isWon());
             response->set_map(BuildMap());
 
-            m_turn = !m_turn;
+            m_lastTurn = request->id();
 
             return Status::OK;
         }
 
-        Status GameServerImpl::GetMap(ServerContext *context, const MapRequest *request, MapResponse *response)
+        Status GameServerImpl::GetState(ServerContext *context, const StateRequest *request, StateResponse *response)
         {
-            auto built = BuildMap();
-
-            if (built == m_lastVersMap)
+            if (request->id() == m_lastTurn)
             {
                 response->set_map("");
-                return Status::CANCELLED;
+                return Status::OK;
             }
 
-            m_lastVersMap = built;
-            response->set_map(built);
+            response->set_map(BuildMap());
 
             return Status::OK;
         }
@@ -170,5 +167,7 @@ namespace server
         std::cout << GRN << "Server listening on " << ip << NC << std::endl;
 
         server.get()->Wait();
+
+        std::cout << GRN << "Stop listening" << NC << std::endl;
     }
 };

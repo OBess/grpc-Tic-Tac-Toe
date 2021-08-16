@@ -32,7 +32,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ReadyRequestDefaultTypeInternal
 constexpr ReadyResponse::ReadyResponse(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : map_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
-  , side_(0){}
+  , id_(0){}
 struct ReadyResponseDefaultTypeInternal {
   constexpr ReadyResponseDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -46,7 +46,7 @@ constexpr StepRequest::StepRequest(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : x_(0)
   , y_(0)
-  , side_(0){}
+  , id_(0){}
 struct StepRequestDefaultTypeInternal {
   constexpr StepRequestDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -69,29 +69,30 @@ struct StepResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT StepResponseDefaultTypeInternal _StepResponse_default_instance_;
-constexpr MapRequest::MapRequest(
-  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized){}
-struct MapRequestDefaultTypeInternal {
-  constexpr MapRequestDefaultTypeInternal()
+constexpr StateRequest::StateRequest(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : id_(0){}
+struct StateRequestDefaultTypeInternal {
+  constexpr StateRequestDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
-  ~MapRequestDefaultTypeInternal() {}
+  ~StateRequestDefaultTypeInternal() {}
   union {
-    MapRequest _instance;
+    StateRequest _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT MapRequestDefaultTypeInternal _MapRequest_default_instance_;
-constexpr MapResponse::MapResponse(
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT StateRequestDefaultTypeInternal _StateRequest_default_instance_;
+constexpr StateResponse::StateResponse(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : map_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
-struct MapResponseDefaultTypeInternal {
-  constexpr MapResponseDefaultTypeInternal()
+struct StateResponseDefaultTypeInternal {
+  constexpr StateResponseDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
-  ~MapResponseDefaultTypeInternal() {}
+  ~StateResponseDefaultTypeInternal() {}
   union {
-    MapResponse _instance;
+    StateResponse _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT MapResponseDefaultTypeInternal _MapResponse_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT StateResponseDefaultTypeInternal _StateResponse_default_instance_;
 }  // namespace GameService
 static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_game_5fservice_2eproto[6];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_game_5fservice_2eproto = nullptr;
@@ -109,7 +110,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_game_5fservice_2eproto::offset
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::GameService::ReadyResponse, side_),
+  PROTOBUF_FIELD_OFFSET(::GameService::ReadyResponse, id_),
   PROTOBUF_FIELD_OFFSET(::GameService::ReadyResponse, map_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::GameService::StepRequest, _internal_metadata_),
@@ -118,7 +119,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_game_5fservice_2eproto::offset
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::GameService::StepRequest, x_),
   PROTOBUF_FIELD_OFFSET(::GameService::StepRequest, y_),
-  PROTOBUF_FIELD_OFFSET(::GameService::StepRequest, side_),
+  PROTOBUF_FIELD_OFFSET(::GameService::StepRequest, id_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::GameService::StepResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -127,24 +128,25 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_game_5fservice_2eproto::offset
   PROTOBUF_FIELD_OFFSET(::GameService::StepResponse, win_),
   PROTOBUF_FIELD_OFFSET(::GameService::StepResponse, map_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::GameService::MapRequest, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::GameService::StateRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::GameService::StateRequest, id_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::GameService::MapResponse, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::GameService::StateResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::GameService::MapResponse, map_),
+  PROTOBUF_FIELD_OFFSET(::GameService::StateResponse, map_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::GameService::ReadyRequest)},
   { 6, -1, sizeof(::GameService::ReadyResponse)},
   { 13, -1, sizeof(::GameService::StepRequest)},
   { 21, -1, sizeof(::GameService::StepResponse)},
-  { 28, -1, sizeof(::GameService::MapRequest)},
-  { 33, -1, sizeof(::GameService::MapResponse)},
+  { 28, -1, sizeof(::GameService::StateRequest)},
+  { 34, -1, sizeof(::GameService::StateResponse)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -152,27 +154,27 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::GameService::_ReadyResponse_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::GameService::_StepRequest_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::GameService::_StepResponse_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::GameService::_MapRequest_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::GameService::_MapResponse_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::GameService::_StateRequest_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::GameService::_StateResponse_default_instance_),
 };
 
 const char descriptor_table_protodef_game_5fservice_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\022game_service.proto\022\013GameService\"\035\n\014Rea"
-  "dyRequest\022\r\n\005ready\030\001 \001(\010\"*\n\rReadyRespons"
-  "e\022\014\n\004side\030\001 \001(\005\022\013\n\003map\030\002 \001(\014\"1\n\013StepRequ"
-  "est\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\022\014\n\004side\030\003 \001(\005\""
-  "(\n\014StepResponse\022\013\n\003win\030\001 \001(\010\022\013\n\003map\030\002 \001("
-  "\014\"\014\n\nMapRequest\"\032\n\013MapResponse\022\013\n\003map\030\001 "
-  "\001(\0142\317\001\n\013GameService\022B\n\tStartGame\022\031.GameS"
-  "ervice.ReadyRequest\032\032.GameService.ReadyR"
-  "esponse\022\?\n\010MakeStep\022\030.GameService.StepRe"
-  "quest\032\031.GameService.StepResponse\022;\n\006GetM"
-  "ap\022\027.GameService.MapRequest\032\030.GameServic"
-  "e.MapResponseb\006proto3"
+  "dyRequest\022\r\n\005ready\030\001 \001(\010\"(\n\rReadyRespons"
+  "e\022\n\n\002id\030\001 \001(\005\022\013\n\003map\030\002 \001(\014\"/\n\013StepReques"
+  "t\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\022\n\n\002id\030\003 \001(\005\"(\n\014S"
+  "tepResponse\022\013\n\003win\030\001 \001(\010\022\013\n\003map\030\002 \001(\014\"\032\n"
+  "\014StateRequest\022\n\n\002id\030\001 \001(\005\"\034\n\rStateRespon"
+  "se\022\013\n\003map\030\001 \001(\0142\325\001\n\013GameService\022B\n\tStart"
+  "Game\022\031.GameService.ReadyRequest\032\032.GameSe"
+  "rvice.ReadyResponse\022\?\n\010MakeStep\022\030.GameSe"
+  "rvice.StepRequest\032\031.GameService.StepResp"
+  "onse\022A\n\010GetState\022\031.GameService.StateRequ"
+  "est\032\032.GameService.StateResponseb\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_game_5fservice_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_game_5fservice_2eproto = {
-  false, false, 461, descriptor_table_protodef_game_5fservice_2eproto, "game_service.proto", 
+  false, false, 479, descriptor_table_protodef_game_5fservice_2eproto, "game_service.proto", 
   &descriptor_table_game_5fservice_2eproto_once, nullptr, 0, 6,
   schemas, file_default_instances, TableStruct_game_5fservice_2eproto::offsets,
   file_level_metadata_game_5fservice_2eproto, file_level_enum_descriptors_game_5fservice_2eproto, file_level_service_descriptors_game_5fservice_2eproto,
@@ -394,13 +396,13 @@ ReadyResponse::ReadyResponse(const ReadyResponse& from)
     map_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_map(), 
       GetArena());
   }
-  side_ = from.side_;
+  id_ = from.id_;
   // @@protoc_insertion_point(copy_constructor:GameService.ReadyResponse)
 }
 
 void ReadyResponse::SharedCtor() {
 map_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-side_ = 0;
+id_ = 0;
 }
 
 ReadyResponse::~ReadyResponse() {
@@ -431,7 +433,7 @@ void ReadyResponse::Clear() {
   (void) cached_has_bits;
 
   map_.ClearToEmpty();
-  side_ = 0;
+  id_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -442,10 +444,10 @@ const char* ReadyResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
     switch (tag >> 3) {
-      // int32 side = 1;
+      // int32 id = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          side_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -485,10 +487,10 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // int32 side = 1;
-  if (this->side() != 0) {
+  // int32 id = 1;
+  if (this->id() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_side(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_id(), target);
   }
 
   // bytes map = 2;
@@ -520,11 +522,11 @@ size_t ReadyResponse::ByteSizeLong() const {
         this->_internal_map());
   }
 
-  // int32 side = 1;
-  if (this->side() != 0) {
+  // int32 id = 1;
+  if (this->id() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
-        this->_internal_side());
+        this->_internal_id());
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -561,8 +563,8 @@ void ReadyResponse::MergeFrom(const ReadyResponse& from) {
   if (from.map().size() > 0) {
     _internal_set_map(from._internal_map());
   }
-  if (from.side() != 0) {
-    _internal_set_side(from._internal_side());
+  if (from.id() != 0) {
+    _internal_set_id(from._internal_id());
   }
 }
 
@@ -588,7 +590,7 @@ void ReadyResponse::InternalSwap(ReadyResponse* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   map_.Swap(&other->map_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  swap(side_, other->side_);
+  swap(id_, other->id_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ReadyResponse::GetMetadata() const {
@@ -612,16 +614,16 @@ StepRequest::StepRequest(const StepRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&x_, &from.x_,
-    static_cast<size_t>(reinterpret_cast<char*>(&side_) -
-    reinterpret_cast<char*>(&x_)) + sizeof(side_));
+    static_cast<size_t>(reinterpret_cast<char*>(&id_) -
+    reinterpret_cast<char*>(&x_)) + sizeof(id_));
   // @@protoc_insertion_point(copy_constructor:GameService.StepRequest)
 }
 
 void StepRequest::SharedCtor() {
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&x_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&side_) -
-    reinterpret_cast<char*>(&x_)) + sizeof(side_));
+    0, static_cast<size_t>(reinterpret_cast<char*>(&id_) -
+    reinterpret_cast<char*>(&x_)) + sizeof(id_));
 }
 
 StepRequest::~StepRequest() {
@@ -651,8 +653,8 @@ void StepRequest::Clear() {
   (void) cached_has_bits;
 
   ::memset(&x_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&side_) -
-      reinterpret_cast<char*>(&x_)) + sizeof(side_));
+      reinterpret_cast<char*>(&id_) -
+      reinterpret_cast<char*>(&x_)) + sizeof(id_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -677,10 +679,10 @@ const char* StepRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // int32 side = 3;
+      // int32 id = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
-          side_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -724,10 +726,10 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_y(), target);
   }
 
-  // int32 side = 3;
-  if (this->side() != 0) {
+  // int32 id = 3;
+  if (this->id() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(3, this->_internal_side(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(3, this->_internal_id(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -760,11 +762,11 @@ size_t StepRequest::ByteSizeLong() const {
         this->_internal_y());
   }
 
-  // int32 side = 3;
-  if (this->side() != 0) {
+  // int32 id = 3;
+  if (this->id() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
-        this->_internal_side());
+        this->_internal_id());
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -804,8 +806,8 @@ void StepRequest::MergeFrom(const StepRequest& from) {
   if (from.y() != 0) {
     _internal_set_y(from._internal_y());
   }
-  if (from.side() != 0) {
-    _internal_set_side(from._internal_side());
+  if (from.id() != 0) {
+    _internal_set_id(from._internal_id());
   }
 }
 
@@ -831,8 +833,8 @@ void StepRequest::InternalSwap(StepRequest* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(StepRequest, side_)
-      + sizeof(StepRequest::side_)
+      PROTOBUF_FIELD_OFFSET(StepRequest, id_)
+      + sizeof(StepRequest::id_)
       - PROTOBUF_FIELD_OFFSET(StepRequest, x_)>(
           reinterpret_cast<char*>(&x_),
           reinterpret_cast<char*>(&other->x_));
@@ -1065,60 +1067,73 @@ void StepResponse::InternalSwap(StepResponse* other) {
 
 // ===================================================================
 
-class MapRequest::_Internal {
+class StateRequest::_Internal {
  public:
 };
 
-MapRequest::MapRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+StateRequest::StateRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
   RegisterArenaDtor(arena);
-  // @@protoc_insertion_point(arena_constructor:GameService.MapRequest)
+  // @@protoc_insertion_point(arena_constructor:GameService.StateRequest)
 }
-MapRequest::MapRequest(const MapRequest& from)
+StateRequest::StateRequest(const StateRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  // @@protoc_insertion_point(copy_constructor:GameService.MapRequest)
+  id_ = from.id_;
+  // @@protoc_insertion_point(copy_constructor:GameService.StateRequest)
 }
 
-void MapRequest::SharedCtor() {
+void StateRequest::SharedCtor() {
+id_ = 0;
 }
 
-MapRequest::~MapRequest() {
-  // @@protoc_insertion_point(destructor:GameService.MapRequest)
+StateRequest::~StateRequest() {
+  // @@protoc_insertion_point(destructor:GameService.StateRequest)
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-void MapRequest::SharedDtor() {
+void StateRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArena() == nullptr);
 }
 
-void MapRequest::ArenaDtor(void* object) {
-  MapRequest* _this = reinterpret_cast< MapRequest* >(object);
+void StateRequest::ArenaDtor(void* object) {
+  StateRequest* _this = reinterpret_cast< StateRequest* >(object);
   (void)_this;
 }
-void MapRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+void StateRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
 }
-void MapRequest::SetCachedSize(int size) const {
+void StateRequest::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
 
-void MapRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:GameService.MapRequest)
+void StateRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:GameService.StateRequest)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  id_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* MapRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* StateRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
+    switch (tag >> 3) {
+      // int32 id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
         if ((tag & 7) == 4 || tag == 0) {
           ctx->SetLastTag(tag);
           goto success;
@@ -1128,6 +1143,8 @@ const char* MapRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID:
             ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
+      }
+    }  // switch
   }  // while
 success:
   return ptr;
@@ -1137,27 +1154,40 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* MapRequest::_InternalSerialize(
+::PROTOBUF_NAMESPACE_ID::uint8* StateRequest::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:GameService.MapRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:GameService.StateRequest)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
+
+  // int32 id = 1;
+  if (this->id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_id(), target);
+  }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:GameService.MapRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:GameService.StateRequest)
   return target;
 }
 
-size_t MapRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:GameService.MapRequest)
+size_t StateRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:GameService.StateRequest)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // int32 id = 1;
+  if (this->id() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_id());
+  }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
@@ -1168,71 +1198,75 @@ size_t MapRequest::ByteSizeLong() const {
   return total_size;
 }
 
-void MapRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:GameService.MapRequest)
+void StateRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:GameService.StateRequest)
   GOOGLE_DCHECK_NE(&from, this);
-  const MapRequest* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<MapRequest>(
+  const StateRequest* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<StateRequest>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:GameService.MapRequest)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:GameService.StateRequest)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:GameService.MapRequest)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:GameService.StateRequest)
     MergeFrom(*source);
   }
 }
 
-void MapRequest::MergeFrom(const MapRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:GameService.MapRequest)
+void StateRequest::MergeFrom(const StateRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:GameService.StateRequest)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (from.id() != 0) {
+    _internal_set_id(from._internal_id());
+  }
 }
 
-void MapRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:GameService.MapRequest)
+void StateRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:GameService.StateRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void MapRequest::CopyFrom(const MapRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:GameService.MapRequest)
+void StateRequest::CopyFrom(const StateRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:GameService.StateRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool MapRequest::IsInitialized() const {
+bool StateRequest::IsInitialized() const {
   return true;
 }
 
-void MapRequest::InternalSwap(MapRequest* other) {
+void StateRequest::InternalSwap(StateRequest* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  swap(id_, other->id_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata MapRequest::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata StateRequest::GetMetadata() const {
   return GetMetadataStatic();
 }
 
 
 // ===================================================================
 
-class MapResponse::_Internal {
+class StateResponse::_Internal {
  public:
 };
 
-MapResponse::MapResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+StateResponse::StateResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
   RegisterArenaDtor(arena);
-  // @@protoc_insertion_point(arena_constructor:GameService.MapResponse)
+  // @@protoc_insertion_point(arena_constructor:GameService.StateResponse)
 }
-MapResponse::MapResponse(const MapResponse& from)
+StateResponse::StateResponse(const StateResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   map_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
@@ -1240,36 +1274,36 @@ MapResponse::MapResponse(const MapResponse& from)
     map_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_map(), 
       GetArena());
   }
-  // @@protoc_insertion_point(copy_constructor:GameService.MapResponse)
+  // @@protoc_insertion_point(copy_constructor:GameService.StateResponse)
 }
 
-void MapResponse::SharedCtor() {
+void StateResponse::SharedCtor() {
 map_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
-MapResponse::~MapResponse() {
-  // @@protoc_insertion_point(destructor:GameService.MapResponse)
+StateResponse::~StateResponse() {
+  // @@protoc_insertion_point(destructor:GameService.StateResponse)
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-void MapResponse::SharedDtor() {
+void StateResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArena() == nullptr);
   map_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
-void MapResponse::ArenaDtor(void* object) {
-  MapResponse* _this = reinterpret_cast< MapResponse* >(object);
+void StateResponse::ArenaDtor(void* object) {
+  StateResponse* _this = reinterpret_cast< StateResponse* >(object);
   (void)_this;
 }
-void MapResponse::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+void StateResponse::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
 }
-void MapResponse::SetCachedSize(int size) const {
+void StateResponse::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
 
-void MapResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:GameService.MapResponse)
+void StateResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:GameService.StateResponse)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -1278,7 +1312,7 @@ void MapResponse::Clear() {
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* MapResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* StateResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
@@ -1315,9 +1349,9 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* MapResponse::_InternalSerialize(
+::PROTOBUF_NAMESPACE_ID::uint8* StateResponse::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:GameService.MapResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:GameService.StateResponse)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -1331,12 +1365,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:GameService.MapResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:GameService.StateResponse)
   return target;
 }
 
-size_t MapResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:GameService.MapResponse)
+size_t StateResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:GameService.StateResponse)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -1359,23 +1393,23 @@ size_t MapResponse::ByteSizeLong() const {
   return total_size;
 }
 
-void MapResponse::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:GameService.MapResponse)
+void StateResponse::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:GameService.StateResponse)
   GOOGLE_DCHECK_NE(&from, this);
-  const MapResponse* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<MapResponse>(
+  const StateResponse* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<StateResponse>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:GameService.MapResponse)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:GameService.StateResponse)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:GameService.MapResponse)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:GameService.StateResponse)
     MergeFrom(*source);
   }
 }
 
-void MapResponse::MergeFrom(const MapResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:GameService.MapResponse)
+void StateResponse::MergeFrom(const StateResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:GameService.StateResponse)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -1386,31 +1420,31 @@ void MapResponse::MergeFrom(const MapResponse& from) {
   }
 }
 
-void MapResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:GameService.MapResponse)
+void StateResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:GameService.StateResponse)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void MapResponse::CopyFrom(const MapResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:GameService.MapResponse)
+void StateResponse::CopyFrom(const StateResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:GameService.StateResponse)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool MapResponse::IsInitialized() const {
+bool StateResponse::IsInitialized() const {
   return true;
 }
 
-void MapResponse::InternalSwap(MapResponse* other) {
+void StateResponse::InternalSwap(StateResponse* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   map_.Swap(&other->map_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata MapResponse::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata StateResponse::GetMetadata() const {
   return GetMetadataStatic();
 }
 
@@ -1430,11 +1464,11 @@ template<> PROTOBUF_NOINLINE ::GameService::StepRequest* Arena::CreateMaybeMessa
 template<> PROTOBUF_NOINLINE ::GameService::StepResponse* Arena::CreateMaybeMessage< ::GameService::StepResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::GameService::StepResponse >(arena);
 }
-template<> PROTOBUF_NOINLINE ::GameService::MapRequest* Arena::CreateMaybeMessage< ::GameService::MapRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::GameService::MapRequest >(arena);
+template<> PROTOBUF_NOINLINE ::GameService::StateRequest* Arena::CreateMaybeMessage< ::GameService::StateRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::GameService::StateRequest >(arena);
 }
-template<> PROTOBUF_NOINLINE ::GameService::MapResponse* Arena::CreateMaybeMessage< ::GameService::MapResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::GameService::MapResponse >(arena);
+template<> PROTOBUF_NOINLINE ::GameService::StateResponse* Arena::CreateMaybeMessage< ::GameService::StateResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::GameService::StateResponse >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

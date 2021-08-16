@@ -51,12 +51,12 @@ class GameService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::GameService::StepResponse>> PrepareAsyncMakeStep(::grpc::ClientContext* context, const ::GameService::StepRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::GameService::StepResponse>>(PrepareAsyncMakeStepRaw(context, request, cq));
     }
-    virtual ::grpc::Status GetMap(::grpc::ClientContext* context, const ::GameService::MapRequest& request, ::GameService::MapResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::GameService::MapResponse>> AsyncGetMap(::grpc::ClientContext* context, const ::GameService::MapRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::GameService::MapResponse>>(AsyncGetMapRaw(context, request, cq));
+    virtual ::grpc::Status GetState(::grpc::ClientContext* context, const ::GameService::StateRequest& request, ::GameService::StateResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::GameService::StateResponse>> AsyncGetState(::grpc::ClientContext* context, const ::GameService::StateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::GameService::StateResponse>>(AsyncGetStateRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::GameService::MapResponse>> PrepareAsyncGetMap(::grpc::ClientContext* context, const ::GameService::MapRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::GameService::MapResponse>>(PrepareAsyncGetMapRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::GameService::StateResponse>> PrepareAsyncGetState(::grpc::ClientContext* context, const ::GameService::StateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::GameService::StateResponse>>(PrepareAsyncGetStateRaw(context, request, cq));
     }
     class experimental_async_interface {
      public:
@@ -73,11 +73,11 @@ class GameService final {
       #else
       virtual void MakeStep(::grpc::ClientContext* context, const ::GameService::StepRequest* request, ::GameService::StepResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      virtual void GetMap(::grpc::ClientContext* context, const ::GameService::MapRequest* request, ::GameService::MapResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetState(::grpc::ClientContext* context, const ::GameService::StateRequest* request, ::GameService::StateResponse* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetMap(::grpc::ClientContext* context, const ::GameService::MapRequest* request, ::GameService::MapResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetState(::grpc::ClientContext* context, const ::GameService::StateRequest* request, ::GameService::StateResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       #else
-      virtual void GetMap(::grpc::ClientContext* context, const ::GameService::MapRequest* request, ::GameService::MapResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void GetState(::grpc::ClientContext* context, const ::GameService::StateRequest* request, ::GameService::StateResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
     };
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -92,8 +92,8 @@ class GameService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::GameService::ReadyResponse>* PrepareAsyncStartGameRaw(::grpc::ClientContext* context, const ::GameService::ReadyRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::GameService::StepResponse>* AsyncMakeStepRaw(::grpc::ClientContext* context, const ::GameService::StepRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::GameService::StepResponse>* PrepareAsyncMakeStepRaw(::grpc::ClientContext* context, const ::GameService::StepRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::GameService::MapResponse>* AsyncGetMapRaw(::grpc::ClientContext* context, const ::GameService::MapRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::GameService::MapResponse>* PrepareAsyncGetMapRaw(::grpc::ClientContext* context, const ::GameService::MapRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::GameService::StateResponse>* AsyncGetStateRaw(::grpc::ClientContext* context, const ::GameService::StateRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::GameService::StateResponse>* PrepareAsyncGetStateRaw(::grpc::ClientContext* context, const ::GameService::StateRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -112,12 +112,12 @@ class GameService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::GameService::StepResponse>> PrepareAsyncMakeStep(::grpc::ClientContext* context, const ::GameService::StepRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::GameService::StepResponse>>(PrepareAsyncMakeStepRaw(context, request, cq));
     }
-    ::grpc::Status GetMap(::grpc::ClientContext* context, const ::GameService::MapRequest& request, ::GameService::MapResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::GameService::MapResponse>> AsyncGetMap(::grpc::ClientContext* context, const ::GameService::MapRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::GameService::MapResponse>>(AsyncGetMapRaw(context, request, cq));
+    ::grpc::Status GetState(::grpc::ClientContext* context, const ::GameService::StateRequest& request, ::GameService::StateResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::GameService::StateResponse>> AsyncGetState(::grpc::ClientContext* context, const ::GameService::StateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::GameService::StateResponse>>(AsyncGetStateRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::GameService::MapResponse>> PrepareAsyncGetMap(::grpc::ClientContext* context, const ::GameService::MapRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::GameService::MapResponse>>(PrepareAsyncGetMapRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::GameService::StateResponse>> PrepareAsyncGetState(::grpc::ClientContext* context, const ::GameService::StateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::GameService::StateResponse>>(PrepareAsyncGetStateRaw(context, request, cq));
     }
     class experimental_async final :
       public StubInterface::experimental_async_interface {
@@ -134,11 +134,11 @@ class GameService final {
       #else
       void MakeStep(::grpc::ClientContext* context, const ::GameService::StepRequest* request, ::GameService::StepResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
-      void GetMap(::grpc::ClientContext* context, const ::GameService::MapRequest* request, ::GameService::MapResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetState(::grpc::ClientContext* context, const ::GameService::StateRequest* request, ::GameService::StateResponse* response, std::function<void(::grpc::Status)>) override;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetMap(::grpc::ClientContext* context, const ::GameService::MapRequest* request, ::GameService::MapResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetState(::grpc::ClientContext* context, const ::GameService::StateRequest* request, ::GameService::StateResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
-      void GetMap(::grpc::ClientContext* context, const ::GameService::MapRequest* request, ::GameService::MapResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void GetState(::grpc::ClientContext* context, const ::GameService::StateRequest* request, ::GameService::StateResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
      private:
       friend class Stub;
@@ -155,11 +155,11 @@ class GameService final {
     ::grpc::ClientAsyncResponseReader< ::GameService::ReadyResponse>* PrepareAsyncStartGameRaw(::grpc::ClientContext* context, const ::GameService::ReadyRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::GameService::StepResponse>* AsyncMakeStepRaw(::grpc::ClientContext* context, const ::GameService::StepRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::GameService::StepResponse>* PrepareAsyncMakeStepRaw(::grpc::ClientContext* context, const ::GameService::StepRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::GameService::MapResponse>* AsyncGetMapRaw(::grpc::ClientContext* context, const ::GameService::MapRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::GameService::MapResponse>* PrepareAsyncGetMapRaw(::grpc::ClientContext* context, const ::GameService::MapRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::GameService::StateResponse>* AsyncGetStateRaw(::grpc::ClientContext* context, const ::GameService::StateRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::GameService::StateResponse>* PrepareAsyncGetStateRaw(::grpc::ClientContext* context, const ::GameService::StateRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_StartGame_;
     const ::grpc::internal::RpcMethod rpcmethod_MakeStep_;
-    const ::grpc::internal::RpcMethod rpcmethod_GetMap_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetState_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -169,7 +169,7 @@ class GameService final {
     virtual ~Service();
     virtual ::grpc::Status StartGame(::grpc::ServerContext* context, const ::GameService::ReadyRequest* request, ::GameService::ReadyResponse* response);
     virtual ::grpc::Status MakeStep(::grpc::ServerContext* context, const ::GameService::StepRequest* request, ::GameService::StepResponse* response);
-    virtual ::grpc::Status GetMap(::grpc::ServerContext* context, const ::GameService::MapRequest* request, ::GameService::MapResponse* response);
+    virtual ::grpc::Status GetState(::grpc::ServerContext* context, const ::GameService::StateRequest* request, ::GameService::StateResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_StartGame : public BaseClass {
@@ -212,26 +212,26 @@ class GameService final {
     }
   };
   template <class BaseClass>
-  class WithAsyncMethod_GetMap : public BaseClass {
+  class WithAsyncMethod_GetState : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_GetMap() {
+    WithAsyncMethod_GetState() {
       ::grpc::Service::MarkMethodAsync(2);
     }
-    ~WithAsyncMethod_GetMap() override {
+    ~WithAsyncMethod_GetState() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetMap(::grpc::ServerContext* /*context*/, const ::GameService::MapRequest* /*request*/, ::GameService::MapResponse* /*response*/) override {
+    ::grpc::Status GetState(::grpc::ServerContext* /*context*/, const ::GameService::StateRequest* /*request*/, ::GameService::StateResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetMap(::grpc::ServerContext* context, ::GameService::MapRequest* request, ::grpc::ServerAsyncResponseWriter< ::GameService::MapResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestGetState(::grpc::ServerContext* context, ::GameService::StateRequest* request, ::grpc::ServerAsyncResponseWriter< ::GameService::StateResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_StartGame<WithAsyncMethod_MakeStep<WithAsyncMethod_GetMap<Service > > > AsyncService;
+  typedef WithAsyncMethod_StartGame<WithAsyncMethod_MakeStep<WithAsyncMethod_GetState<Service > > > AsyncService;
   template <class BaseClass>
   class ExperimentalWithCallbackMethod_StartGame : public BaseClass {
    private:
@@ -327,57 +327,57 @@ class GameService final {
       { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_GetMap : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetState : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_GetMap() {
+    ExperimentalWithCallbackMethod_GetState() {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::Service::
     #else
       ::grpc::Service::experimental().
     #endif
         MarkMethodCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::GameService::MapRequest, ::GameService::MapResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::GameService::StateRequest, ::GameService::StateResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
     #else
                    ::grpc::experimental::CallbackServerContext*
     #endif
-                     context, const ::GameService::MapRequest* request, ::GameService::MapResponse* response) { return this->GetMap(context, request, response); }));}
-    void SetMessageAllocatorFor_GetMap(
-        ::grpc::experimental::MessageAllocator< ::GameService::MapRequest, ::GameService::MapResponse>* allocator) {
+                     context, const ::GameService::StateRequest* request, ::GameService::StateResponse* response) { return this->GetState(context, request, response); }));}
+    void SetMessageAllocatorFor_GetState(
+        ::grpc::experimental::MessageAllocator< ::GameService::StateRequest, ::GameService::StateResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
     #else
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(2);
     #endif
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::GameService::MapRequest, ::GameService::MapResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::GameService::StateRequest, ::GameService::StateResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_GetMap() override {
+    ~ExperimentalWithCallbackMethod_GetState() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetMap(::grpc::ServerContext* /*context*/, const ::GameService::MapRequest* /*request*/, ::GameService::MapResponse* /*response*/) override {
+    ::grpc::Status GetState(::grpc::ServerContext* /*context*/, const ::GameService::StateRequest* /*request*/, ::GameService::StateResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* GetMap(
-      ::grpc::CallbackServerContext* /*context*/, const ::GameService::MapRequest* /*request*/, ::GameService::MapResponse* /*response*/)
+    virtual ::grpc::ServerUnaryReactor* GetState(
+      ::grpc::CallbackServerContext* /*context*/, const ::GameService::StateRequest* /*request*/, ::GameService::StateResponse* /*response*/)
     #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetMap(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::GameService::MapRequest* /*request*/, ::GameService::MapResponse* /*response*/)
+    virtual ::grpc::experimental::ServerUnaryReactor* GetState(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::GameService::StateRequest* /*request*/, ::GameService::StateResponse* /*response*/)
     #endif
       { return nullptr; }
   };
   #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-  typedef ExperimentalWithCallbackMethod_StartGame<ExperimentalWithCallbackMethod_MakeStep<ExperimentalWithCallbackMethod_GetMap<Service > > > CallbackService;
+  typedef ExperimentalWithCallbackMethod_StartGame<ExperimentalWithCallbackMethod_MakeStep<ExperimentalWithCallbackMethod_GetState<Service > > > CallbackService;
   #endif
 
-  typedef ExperimentalWithCallbackMethod_StartGame<ExperimentalWithCallbackMethod_MakeStep<ExperimentalWithCallbackMethod_GetMap<Service > > > ExperimentalCallbackService;
+  typedef ExperimentalWithCallbackMethod_StartGame<ExperimentalWithCallbackMethod_MakeStep<ExperimentalWithCallbackMethod_GetState<Service > > > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_StartGame : public BaseClass {
    private:
@@ -413,18 +413,18 @@ class GameService final {
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_GetMap : public BaseClass {
+  class WithGenericMethod_GetState : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_GetMap() {
+    WithGenericMethod_GetState() {
       ::grpc::Service::MarkMethodGeneric(2);
     }
-    ~WithGenericMethod_GetMap() override {
+    ~WithGenericMethod_GetState() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetMap(::grpc::ServerContext* /*context*/, const ::GameService::MapRequest* /*request*/, ::GameService::MapResponse* /*response*/) override {
+    ::grpc::Status GetState(::grpc::ServerContext* /*context*/, const ::GameService::StateRequest* /*request*/, ::GameService::StateResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -470,22 +470,22 @@ class GameService final {
     }
   };
   template <class BaseClass>
-  class WithRawMethod_GetMap : public BaseClass {
+  class WithRawMethod_GetState : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_GetMap() {
+    WithRawMethod_GetState() {
       ::grpc::Service::MarkMethodRaw(2);
     }
-    ~WithRawMethod_GetMap() override {
+    ~WithRawMethod_GetState() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetMap(::grpc::ServerContext* /*context*/, const ::GameService::MapRequest* /*request*/, ::GameService::MapResponse* /*response*/) override {
+    ::grpc::Status GetState(::grpc::ServerContext* /*context*/, const ::GameService::StateRequest* /*request*/, ::GameService::StateResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetMap(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestGetState(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -566,11 +566,11 @@ class GameService final {
       { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_GetMap : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetState : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_GetMap() {
+    ExperimentalWithRawCallbackMethod_GetState() {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::Service::
     #else
@@ -584,21 +584,21 @@ class GameService final {
     #else
                    ::grpc::experimental::CallbackServerContext*
     #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetMap(context, request, response); }));
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetState(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_GetMap() override {
+    ~ExperimentalWithRawCallbackMethod_GetState() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetMap(::grpc::ServerContext* /*context*/, const ::GameService::MapRequest* /*request*/, ::GameService::MapResponse* /*response*/) override {
+    ::grpc::Status GetState(::grpc::ServerContext* /*context*/, const ::GameService::StateRequest* /*request*/, ::GameService::StateResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* GetMap(
+    virtual ::grpc::ServerUnaryReactor* GetState(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
     #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetMap(
+    virtual ::grpc::experimental::ServerUnaryReactor* GetState(
       ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
     #endif
       { return nullptr; }
@@ -658,35 +658,35 @@ class GameService final {
     virtual ::grpc::Status StreamedMakeStep(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::GameService::StepRequest,::GameService::StepResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_GetMap : public BaseClass {
+  class WithStreamedUnaryMethod_GetState : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_GetMap() {
+    WithStreamedUnaryMethod_GetState() {
       ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::GameService::MapRequest, ::GameService::MapResponse>(
+          ::GameService::StateRequest, ::GameService::StateResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::GameService::MapRequest, ::GameService::MapResponse>* streamer) {
-                       return this->StreamedGetMap(context,
+                     ::GameService::StateRequest, ::GameService::StateResponse>* streamer) {
+                       return this->StreamedGetState(context,
                          streamer);
                   }));
     }
-    ~WithStreamedUnaryMethod_GetMap() override {
+    ~WithStreamedUnaryMethod_GetState() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status GetMap(::grpc::ServerContext* /*context*/, const ::GameService::MapRequest* /*request*/, ::GameService::MapResponse* /*response*/) override {
+    ::grpc::Status GetState(::grpc::ServerContext* /*context*/, const ::GameService::StateRequest* /*request*/, ::GameService::StateResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetMap(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::GameService::MapRequest,::GameService::MapResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedGetState(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::GameService::StateRequest,::GameService::StateResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_StartGame<WithStreamedUnaryMethod_MakeStep<WithStreamedUnaryMethod_GetMap<Service > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_StartGame<WithStreamedUnaryMethod_MakeStep<WithStreamedUnaryMethod_GetState<Service > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_StartGame<WithStreamedUnaryMethod_MakeStep<WithStreamedUnaryMethod_GetMap<Service > > > StreamedService;
+  typedef WithStreamedUnaryMethod_StartGame<WithStreamedUnaryMethod_MakeStep<WithStreamedUnaryMethod_GetState<Service > > > StreamedService;
 };
 
 }  // namespace GameService

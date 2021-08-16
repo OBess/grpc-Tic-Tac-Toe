@@ -3,6 +3,7 @@
 // C++
 #include <iostream>
 #include <memory>
+#include <utility>
 #include <string>
 
 // gRPC
@@ -16,8 +17,8 @@ using grpc::Channel;
 using grpc::ClientContext;
 using grpc::Status;
 
-using GameService::MapRequest;
-using GameService::MapResponse;
+using GameService::StateRequest;
+using GameService::StateResponse;
 using GameService::ReadyRequest;
 using GameService::ReadyResponse;
 using GameService::StepRequest;
@@ -40,7 +41,8 @@ namespace client
         {
         private:
             std::unique_ptr<GameService::GameService::Stub> m_stub;
-            int m_size;
+            int m_id;
+            char m_side;
 
         public:
             GameClient(std::shared_ptr<Channel> channel);
@@ -51,13 +53,13 @@ namespace client
             GameClient(GameClient &&) = delete;
 
             // Main method for start
-            bool Ready() noexcept;
+            std::pair<ReadyResponse, bool> Ready() noexcept;
 
             // Make step
-            bool Step(unsigned x, unsigned y) noexcept;
+            StepResponse Step(unsigned x, unsigned y) noexcept;
 
             // Make step
-            std::string GetMap() noexcept;
+            std::string GetState() noexcept;
 
             char getSide() const noexcept;
 

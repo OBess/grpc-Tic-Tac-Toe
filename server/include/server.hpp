@@ -18,8 +18,8 @@ using grpc::ServerBuilder;
 using grpc::ServerContext;
 using grpc::Status;
 
-using GameService::MapRequest;
-using GameService::MapResponse;
+using GameService::StateRequest;
+using GameService::StateResponse;
 using GameService::ReadyRequest;
 using GameService::ReadyResponse;
 using GameService::StepRequest;
@@ -49,10 +49,7 @@ namespace server
             int m_players{1};
             const size_t m_size = 3;
 
-            bool m_turn = true;
-
-            // Check changing of map
-            std::string m_lastVersMap;
+            int m_lastTurn;
 
             // Build instance of map in string type
             std::string BuildMap() const noexcept;
@@ -72,7 +69,7 @@ namespace server
 
             Status MakeStep(ServerContext *context, const StepRequest *request, StepResponse *response) override;
 
-            Status GetMap(ServerContext *context, const MapRequest *request, MapResponse *response) override;
+            Status GetState(ServerContext *context, const StateRequest *request, StateResponse *response) override;
 
             // Block to copy
             GameServerImpl &operator=(const GameServerImpl &) = delete;

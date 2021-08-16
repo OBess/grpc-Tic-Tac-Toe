@@ -24,7 +24,7 @@ namespace GameService {
 static const char* GameService_method_names[] = {
   "/GameService.GameService/StartGame",
   "/GameService.GameService/MakeStep",
-  "/GameService.GameService/GetMap",
+  "/GameService.GameService/GetState",
 };
 
 std::unique_ptr< GameService::Stub> GameService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -36,7 +36,7 @@ std::unique_ptr< GameService::Stub> GameService::NewStub(const std::shared_ptr< 
 GameService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
   : channel_(channel), rpcmethod_StartGame_(GameService_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_MakeStep_(GameService_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetMap_(GameService_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetState_(GameService_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status GameService::Stub::StartGame(::grpc::ClientContext* context, const ::GameService::ReadyRequest& request, ::GameService::ReadyResponse* response) {
@@ -85,25 +85,25 @@ void GameService::Stub::experimental_async::MakeStep(::grpc::ClientContext* cont
   return result;
 }
 
-::grpc::Status GameService::Stub::GetMap(::grpc::ClientContext* context, const ::GameService::MapRequest& request, ::GameService::MapResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::GameService::MapRequest, ::GameService::MapResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetMap_, context, request, response);
+::grpc::Status GameService::Stub::GetState(::grpc::ClientContext* context, const ::GameService::StateRequest& request, ::GameService::StateResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::GameService::StateRequest, ::GameService::StateResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetState_, context, request, response);
 }
 
-void GameService::Stub::experimental_async::GetMap(::grpc::ClientContext* context, const ::GameService::MapRequest* request, ::GameService::MapResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::GameService::MapRequest, ::GameService::MapResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetMap_, context, request, response, std::move(f));
+void GameService::Stub::experimental_async::GetState(::grpc::ClientContext* context, const ::GameService::StateRequest* request, ::GameService::StateResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::GameService::StateRequest, ::GameService::StateResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetState_, context, request, response, std::move(f));
 }
 
-void GameService::Stub::experimental_async::GetMap(::grpc::ClientContext* context, const ::GameService::MapRequest* request, ::GameService::MapResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetMap_, context, request, response, reactor);
+void GameService::Stub::experimental_async::GetState(::grpc::ClientContext* context, const ::GameService::StateRequest* request, ::GameService::StateResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetState_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::GameService::MapResponse>* GameService::Stub::PrepareAsyncGetMapRaw(::grpc::ClientContext* context, const ::GameService::MapRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::GameService::MapResponse, ::GameService::MapRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetMap_, context, request);
+::grpc::ClientAsyncResponseReader< ::GameService::StateResponse>* GameService::Stub::PrepareAsyncGetStateRaw(::grpc::ClientContext* context, const ::GameService::StateRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::GameService::StateResponse, ::GameService::StateRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetState_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::GameService::MapResponse>* GameService::Stub::AsyncGetMapRaw(::grpc::ClientContext* context, const ::GameService::MapRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::GameService::StateResponse>* GameService::Stub::AsyncGetStateRaw(::grpc::ClientContext* context, const ::GameService::StateRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
-    this->PrepareAsyncGetMapRaw(context, request, cq);
+    this->PrepareAsyncGetStateRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -132,12 +132,12 @@ GameService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       GameService_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< GameService::Service, ::GameService::MapRequest, ::GameService::MapResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< GameService::Service, ::GameService::StateRequest, ::GameService::StateResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](GameService::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::GameService::MapRequest* req,
-             ::GameService::MapResponse* resp) {
-               return service->GetMap(ctx, req, resp);
+             const ::GameService::StateRequest* req,
+             ::GameService::StateResponse* resp) {
+               return service->GetState(ctx, req, resp);
              }, this)));
 }
 
@@ -158,7 +158,7 @@ GameService::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status GameService::Service::GetMap(::grpc::ServerContext* context, const ::GameService::MapRequest* request, ::GameService::MapResponse* response) {
+::grpc::Status GameService::Service::GetState(::grpc::ServerContext* context, const ::GameService::StateRequest* request, ::GameService::StateResponse* response) {
   (void) context;
   (void) request;
   (void) response;
