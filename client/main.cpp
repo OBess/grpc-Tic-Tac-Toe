@@ -6,6 +6,8 @@
 
 int main(int argc, char const *argv[])
 {
-    std::cout << "Hellow";
+    const std::string ip("localhost:4030");
+    client::GameClient clt(grpc::CreateChannel(ip, grpc::InsecureChannelCredentials()));
+    clt.Ready();
     return EXIT_SUCCESS;
 }
