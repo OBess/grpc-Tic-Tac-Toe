@@ -34,131 +34,39 @@ using GameService::StepResponse;
 
 namespace client
 {
-    class GameClient final
+    namespace
     {
-    private:
-        std::unique_ptr<GameService::GameService::Stub> m_stub;
-        int m_size;
-
-    public:
-        GameClient(std::shared_ptr<Channel> channel)
-            : m_stub(GameService::GameService::NewStub(channel))
+        class GameClient final
         {
-        }
+        private:
+            std::unique_ptr<GameService::GameService::Stub> m_stub;
+            int m_size;
 
-        ~GameClient() = default;
+        public:
+            GameClient(std::shared_ptr<Channel> channel);
+            ~GameClient() = default;
 
-        // Block to copy
-        GameClient(const GameClient &) = delete;
-        GameClient(GameClient &&) = delete;
+            // Block to copy
+            GameClient(const GameClient &) = delete;
+            GameClient(GameClient &&) = delete;
 
-        // Main method for start
-        bool Ready() noexcept
-        {
-            ReadyRequest request;
-            request.set_ready(true);
+            // Main method for start
+            bool Ready() noexcept;
 
-            ReadyResponse response;
-            ClientContext context;
+            // Make step
+            bool Step(unsigned x, unsigned y) noexcept;
 
-            Status status = m_stub->StartGame(&context, request, &response);
+            // Make step
+            std::string GetMap() noexcept;
 
-            if (status.ok())
-            {
-                m_size = response.side();
-            }
-            else
-                std::cout << RED << status.error_code() << ": " << status.error_message() << NC << std::endl;
+            char getSide() const noexcept;
 
-            return status.ok();
-        }
-
-        // Make step
-        bool Step(unsigned x, unsigned y) noexcept
-        {
-            StepRequest request;
-            request.set_side(m_size);
-            request.set_x(x);
-            request.set_y(y);
-
-            StepResponse response;
-            ClientContext context;
-
-            Status status = m_stub->MakeStep(&context, request, &response);
-
-            if (status.ok())
-            {
-            }
-            else
-                std::cout << RED << status.error_code() << ": " << status.error_message() << NC << std::endl;
-
-            return response.win();
-        }
-
-        // Make step
-        std::string GetMap() noexcept
-        {
-            MapRequest request;
-            MapResponse response;
-            ClientContext context;
-
-            Status status = m_stub->GetMap(&context, request, &response);
-
-            if (status.ok())
-            {
-            }
-            else
-                std::cout << RED << status.error_code() << ": " << status.error_message() << NC << std::endl;
-
-            return response.map();
-        }
-
-        char getSide() const noexcept
-        {
-            return m_size % 2 ? 'x' : 'o';
-        }
-
-        // Block to copy
-        GameClient &operator=(const GameClient &) = delete;
-        GameClient &operator=(const GameClient &&) = delete;
-    };
+            // Block to copy
+            GameClient &operator=(const GameClient &) = delete;
+            GameClient &operator=(const GameClient &&) = delete;
+        };
+    }
 
     // Main method of start
-    void Run(const std::string &ip)
-    {
-        client::GameClient clt(grpc::CreateChannel(ip, grpc::InsecureChannelCredentials()));
-
-        if (!clt.Ready())
-            return;
-
-        int x, y;
-        bool isWinner;
-        std::string map;
-
-        std::cout << "\tTic-Tac-Toe" << std::endl;
-        std::cout << "First is X!" << std::endl
-                  << std::endl;
-        std::cout << "You are " << clt.getSide() << std::endl;
-
-        do
-        {
-            std::cout << "Enter x and y [1; 3]: ";
-
-            std::cin >> x >> y;
-            isWinner = clt.Step(x - 1, y - 1);
-
-            map = clt.GetMap();
-
-            std::cout << "Board: " << std::endl;
-            std::cout << map << std::endl;
-            std::cout << "Turn other player." << std::endl;
-
-            while (map != "")
-                map = clt.GetMap();
-
-            std::cout << "Board: " << std::endl;
-            std::cout << clt.GetMap() << std::endl;
-
-        } while (true);
-    }
-}
+    void Run(const std::string &ip);
+};

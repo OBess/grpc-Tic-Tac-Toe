@@ -55,91 +55,12 @@ namespace server
             std::string m_lastVersMap;
 
             // Build instance of map in string type
-            std::string BuildMap() const noexcept
-            {
-                std::string map{};
-                const std::string horizontalLine{"-----"};
+            std::string BuildMap() const noexcept;
 
-                auto map_push = [&](size_t i)
-                {
-                    for (size_t j = 0; j < m_map[i].size() - 1; ++j)
-                    {
-                        map.push_back(m_map[i][j]);
-                        map.push_back('|');
-                    }
-                    map.push_back(m_map[i][m_map[i].size() - 1]);
-                };
-
-                for (size_t i = 0; i < m_map.size() - 1; ++i)
-                {
-                    map_push(i);
-                    map.push_back('\n');
-                    map.append(horizontalLine);
-                    map.push_back('\n');
-                }
-                map_push(m_map.size() - 1);
-
-                return map;
-            }
-
-            bool isWon() const noexcept
-            {
-                bool won = false;
-
-                // Horizontal check
-                for (const auto &i : m_map)
-                {
-                    auto x = std::count(i.begin(), i.end(), 'x');
-                    auto o = std::count(i.begin(), i.end(), 'o');
-                    if (x == i.size() || o == i.size())
-                        return true;
-                }
-
-                // Vertical check
-                for (size_t j = 0; j < m_map[0].size(); ++j)
-                {
-                    size_t x = 0, o = 0;
-                    for (size_t i = 0; i < m_map.size(); ++i)
-                    {
-                        if (m_map[i][j] == 'x')
-                            ++x;
-                        if (m_map[i][j] == 'o')
-                            ++o;
-                    }
-                    if (x == i.size() || o == i.size())
-                        return true;
-                }
-
-                // Diagonal check
-                for (size_t j = 0; j < m_map[0].size(); ++j)
-                {
-                    size_t x = 0, o = 0;
-                    for (size_t i = 0; i < m_map.size(); ++i)
-                    {
-                        if (m_map[i][j] == 'x')
-                            ++x;
-                        if (m_map[i][j] == 'o')
-                            ++o;
-                    }
-                    if (x == i.size() || o == i.size())
-                        return true;
-                }
-
-                return false;
-            }
+            bool isWon() const noexcept;
 
         public:
-            GameServerImpl()
-            {
-                for (size_t i = 0; i < m_size; ++i)
-                {
-                    m_map.push_back({});
-                    for (size_t j = 0; j < m_size; ++j)
-                        m_map[i].push_back(' ');
-                }
-                m_lastVersMap = BuildMap();
-            }
-
+            GameServerImpl();
             ~GameServerImpl() = default;
 
             // Block to copy
@@ -147,56 +68,11 @@ namespace server
             GameServerImpl(GameServerImpl &&) = delete;
 
             // Network methods
-            Status StartGame(ServerContext *context, const ReadyRequest *request, ReadyResponse *response) override
-            {
-                if (m_players > 2)
-                    return {grpc::StatusCode::UNAVAILABLE, "Two player are connected."};
+            Status StartGame(ServerContext *context, const ReadyRequest *request, ReadyResponse *response) override;
 
-                response->set_map(m_lastVersMap);
-                response->set_side(m_players);
+            Status MakeStep(ServerContext *context, const StepRequest *request, StepResponse *response) override;
 
-                std::cout << YEL << "Player " << m_players << " is connected." << NC << std::endl;
-                ++m_players;
-
-                return Status::OK;
-            }
-
-            Status MakeStep(ServerContext *context, const StepRequest *request, StepResponse *response) override
-            {
-                if (request->side() % 2 == !m_turn)
-                    return {grpc::StatusCode::PERMISSION_DENIED, "Not you turn."};
-
-                auto x = request->x();
-                auto y = request->y();
-
-                if (m_map[y][x] != ' ' or x >= m_size or y >= m_size)
-                    return {grpc::StatusCode::PERMISSION_DENIED, "Block is filled or out of range."};
-
-                m_map[y][x] = (request->side() % 2 ? 'x' : 'o');
-
-                response->set_win(false);
-                response->set_map(BuildMap());
-
-                m_turn = !m_turn;
-
-                return Status::OK;
-            }
-
-            Status GetMap(ServerContext *context, const MapRequest *request, MapResponse *response) override
-            {
-                auto built = BuildMap();
-
-                if (built == m_lastVersMap)
-                {
-                    response->set_map("");
-                    return Status::CANCELLED;
-                }
-
-                m_lastVersMap = built;
-                response->set_map(built);
-
-                return Status::OK;
-            }
+            Status GetMap(ServerContext *context, const MapRequest *request, MapResponse *response) override;
 
             // Block to copy
             GameServerImpl &operator=(const GameServerImpl &) = delete;
@@ -205,19 +81,6 @@ namespace server
     }
 
     // Main method of start
-    void Run(const std::string &ip) noexcept
-    {
-        GameServerImpl service;
-
-        ServerBuilder builder;
-        builder
-            .AddListeningPort(ip, grpc::InsecureServerCredentials())
-            .RegisterService(&service);
-
-        auto server = builder.BuildAndStart();
-        std::cout << GRN << "Server listening on " << ip << NC << std::endl;
-
-        server.get()->Wait();
-    }
+    void Run(const std::string &ip) noexcept;
 
 };
