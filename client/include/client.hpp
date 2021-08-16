@@ -63,7 +63,12 @@ namespace client
             Status status = m_stub->StartGame(&context, request, &response);
 
             if (status.ok())
+            {
                 m_number = response.side();
+
+                std::cout << "Board: " << std::endl;
+                std::cout << response.map() << std::endl;
+            }
             else
                 std::cout << RED << status.error_code() << ": " << status.error_message() << NC << std::endl;
         }
@@ -72,4 +77,11 @@ namespace client
         GameClient &operator=(const GameClient &) = delete;
         GameClient &operator=(const GameClient &&) = delete;
     };
+
+    // Main method of start
+    void Run(const std::string &ip)
+    {
+        client::GameClient clt(grpc::CreateChannel(ip, grpc::InsecureChannelCredentials()));
+        clt.Ready();
+    }
 }

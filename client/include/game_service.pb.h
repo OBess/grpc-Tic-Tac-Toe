@@ -328,8 +328,25 @@ class ReadyResponse PROTOBUF_FINAL :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kMapFieldNumber = 2,
     kSideFieldNumber = 1,
   };
+  // bytes map = 2;
+  void clear_map();
+  const std::string& map() const;
+  void set_map(const std::string& value);
+  void set_map(std::string&& value);
+  void set_map(const char* value);
+  void set_map(const void* value, size_t size);
+  std::string* mutable_map();
+  std::string* release_map();
+  void set_allocated_map(std::string* map);
+  private:
+  const std::string& _internal_map() const;
+  void _internal_set_map(const std::string& value);
+  std::string* _internal_mutable_map();
+  public:
+
   // bool side = 1;
   void clear_side();
   bool side() const;
@@ -346,6 +363,7 @@ class ReadyResponse PROTOBUF_FINAL :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr map_;
   bool side_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_game_5fservice_2eproto;
@@ -628,13 +646,13 @@ class MapResponse PROTOBUF_FINAL :
     kMapFieldNumber = 3,
     kHasErrorFieldNumber = 1,
   };
-  // string msg = 2;
+  // bytes msg = 2;
   void clear_msg();
   const std::string& msg() const;
   void set_msg(const std::string& value);
   void set_msg(std::string&& value);
   void set_msg(const char* value);
-  void set_msg(const char* value, size_t size);
+  void set_msg(const void* value, size_t size);
   std::string* mutable_msg();
   std::string* release_msg();
   void set_allocated_msg(std::string* msg);
@@ -644,13 +662,13 @@ class MapResponse PROTOBUF_FINAL :
   std::string* _internal_mutable_msg();
   public:
 
-  // string map = 3;
+  // bytes map = 3;
   void clear_map();
   const std::string& map() const;
   void set_map(const std::string& value);
   void set_map(std::string&& value);
   void set_map(const char* value);
-  void set_map(const char* value, size_t size);
+  void set_map(const void* value, size_t size);
   std::string* mutable_map();
   std::string* release_map();
   void set_allocated_map(std::string* map);
@@ -735,6 +753,67 @@ inline void ReadyResponse::_internal_set_side(bool value) {
 inline void ReadyResponse::set_side(bool value) {
   _internal_set_side(value);
   // @@protoc_insertion_point(field_set:GameService.ReadyResponse.side)
+}
+
+// bytes map = 2;
+inline void ReadyResponse::clear_map() {
+  map_.ClearToEmpty();
+}
+inline const std::string& ReadyResponse::map() const {
+  // @@protoc_insertion_point(field_get:GameService.ReadyResponse.map)
+  return _internal_map();
+}
+inline void ReadyResponse::set_map(const std::string& value) {
+  _internal_set_map(value);
+  // @@protoc_insertion_point(field_set:GameService.ReadyResponse.map)
+}
+inline std::string* ReadyResponse::mutable_map() {
+  // @@protoc_insertion_point(field_mutable:GameService.ReadyResponse.map)
+  return _internal_mutable_map();
+}
+inline const std::string& ReadyResponse::_internal_map() const {
+  return map_.Get();
+}
+inline void ReadyResponse::_internal_set_map(const std::string& value) {
+  
+  map_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void ReadyResponse::set_map(std::string&& value) {
+  
+  map_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:GameService.ReadyResponse.map)
+}
+inline void ReadyResponse::set_map(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  map_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:GameService.ReadyResponse.map)
+}
+inline void ReadyResponse::set_map(const void* value,
+    size_t size) {
+  
+  map_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:GameService.ReadyResponse.map)
+}
+inline std::string* ReadyResponse::_internal_mutable_map() {
+  
+  return map_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* ReadyResponse::release_map() {
+  // @@protoc_insertion_point(field_release:GameService.ReadyResponse.map)
+  return map_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void ReadyResponse::set_allocated_map(std::string* map) {
+  if (map != nullptr) {
+    
+  } else {
+    
+  }
+  map_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), map,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:GameService.ReadyResponse.map)
 }
 
 // -------------------------------------------------------------------
@@ -825,7 +904,7 @@ inline void MapResponse::set_haserror(bool value) {
   // @@protoc_insertion_point(field_set:GameService.MapResponse.hasError)
 }
 
-// string msg = 2;
+// bytes msg = 2;
 inline void MapResponse::clear_msg() {
   msg_.ClearToEmpty();
 }
@@ -860,7 +939,7 @@ inline void MapResponse::set_msg(const char* value) {
   msg_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
   // @@protoc_insertion_point(field_set_char:GameService.MapResponse.msg)
 }
-inline void MapResponse::set_msg(const char* value,
+inline void MapResponse::set_msg(const void* value,
     size_t size) {
   
   msg_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
@@ -886,7 +965,7 @@ inline void MapResponse::set_allocated_msg(std::string* msg) {
   // @@protoc_insertion_point(field_set_allocated:GameService.MapResponse.msg)
 }
 
-// string map = 3;
+// bytes map = 3;
 inline void MapResponse::clear_map() {
   map_.ClearToEmpty();
 }
@@ -921,7 +1000,7 @@ inline void MapResponse::set_map(const char* value) {
   map_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
   // @@protoc_insertion_point(field_set_char:GameService.MapResponse.map)
 }
-inline void MapResponse::set_map(const char* value,
+inline void MapResponse::set_map(const void* value,
     size_t size) {
   
   map_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(

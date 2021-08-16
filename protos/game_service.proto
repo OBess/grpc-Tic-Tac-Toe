@@ -9,6 +9,7 @@ message ReadyRequest{
 
 message ReadyResponse{
     bool side = 1;
+    bytes map = 2;
 }
 
 
@@ -21,8 +22,8 @@ message StepRequest{
 
 message MapResponse{
     bool hasError = 1;
-    string msg = 2;
-    string map = 3;
+    bytes msg = 2;
+    bytes map = 3;
 }
 
 

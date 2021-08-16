@@ -1,7 +1,7 @@
 SOURCES = $(shell find . -name '*.proto')
 FROM = '.'
 DEST = './build'
-PATH = /usr/src/environment/vcpkg/installed/x64-linux/tools/protobuf
+PATH = /usr/src/environment/vcpkg/installed/x64-linux/tools/protobuf/
 # PATH = /usr/src/environment/vcpkg/buildtrees/protobuf/x64-linux-dbg/
 
 all: fbuild
