@@ -21,9 +21,8 @@ message StepRequest{
 }
 
 message MapResponse{
-    bool hasError = 1;
-    bytes msg = 2;
-    bytes map = 3;
+    bool win = 1;
+    bytes map = 2;
 }
 
 

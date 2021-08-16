@@ -73,6 +73,9 @@ namespace client
                 std::cout << RED << status.error_code() << ": " << status.error_message() << NC << std::endl;
         }
 
+        // Put sign
+        
+
         // Block to copy
         GameClient &operator=(const GameClient &) = delete;
         GameClient &operator=(const GameClient &&) = delete;

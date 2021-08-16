@@ -58,9 +58,8 @@ struct StepRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT StepRequestDefaultTypeInternal _StepRequest_default_instance_;
 constexpr MapResponse::MapResponse(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : msg_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
-  , map_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
-  , haserror_(false){}
+  : map_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , win_(false){}
 struct MapResponseDefaultTypeInternal {
   constexpr MapResponseDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -102,8 +101,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_game_5fservice_2eproto::offset
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::GameService::MapResponse, haserror_),
-  PROTOBUF_FIELD_OFFSET(::GameService::MapResponse, msg_),
+  PROTOBUF_FIELD_OFFSET(::GameService::MapResponse, win_),
   PROTOBUF_FIELD_OFFSET(::GameService::MapResponse, map_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -125,16 +123,15 @@ const char descriptor_table_protodef_game_5fservice_2eproto[] PROTOBUF_SECTION_V
   "dyRequest\022\r\n\005ready\030\001 \001(\010\"*\n\rReadyRespons"
   "e\022\014\n\004side\030\001 \001(\010\022\013\n\003map\030\002 \001(\014\"1\n\013StepRequ"
   "est\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\022\014\n\004side\030\003 \001(\010\""
-  "9\n\013MapResponse\022\020\n\010hasError\030\001 \001(\010\022\013\n\003msg\030"
-  "\002 \001(\014\022\013\n\003map\030\003 \001(\0142\221\001\n\013GameService\022B\n\tSt"
-  "artGame\022\031.GameService.ReadyRequest\032\032.Gam"
-  "eService.ReadyResponse\022>\n\010MakeStep\022\030.Gam"
-  "eService.StepRequest\032\030.GameService.MapRe"
-  "sponseb\006proto3"
+  "\'\n\013MapResponse\022\013\n\003win\030\001 \001(\010\022\013\n\003map\030\002 \001(\014"
+  "2\221\001\n\013GameService\022B\n\tStartGame\022\031.GameServ"
+  "ice.ReadyRequest\032\032.GameService.ReadyResp"
+  "onse\022>\n\010MakeStep\022\030.GameService.StepReque"
+  "st\032\030.GameService.MapResponseb\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_game_5fservice_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_game_5fservice_2eproto = {
-  false, false, 374, descriptor_table_protodef_game_5fservice_2eproto, "game_service.proto", 
+  false, false, 356, descriptor_table_protodef_game_5fservice_2eproto, "game_service.proto", 
   &descriptor_table_game_5fservice_2eproto_once, nullptr, 0, 4,
   schemas, file_default_instances, TableStruct_game_5fservice_2eproto::offsets,
   file_level_metadata_game_5fservice_2eproto, file_level_enum_descriptors_game_5fservice_2eproto, file_level_service_descriptors_game_5fservice_2eproto,
@@ -816,24 +813,18 @@ MapResponse::MapResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
 MapResponse::MapResponse(const MapResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  msg_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (!from._internal_msg().empty()) {
-    msg_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_msg(), 
-      GetArena());
-  }
   map_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_map().empty()) {
     map_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_map(), 
       GetArena());
   }
-  haserror_ = from.haserror_;
+  win_ = from.win_;
   // @@protoc_insertion_point(copy_constructor:GameService.MapResponse)
 }
 
 void MapResponse::SharedCtor() {
-msg_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 map_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-haserror_ = false;
+win_ = false;
 }
 
 MapResponse::~MapResponse() {
@@ -844,7 +835,6 @@ MapResponse::~MapResponse() {
 
 void MapResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArena() == nullptr);
-  msg_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   map_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
@@ -864,9 +854,8 @@ void MapResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  msg_.ClearToEmpty();
   map_.ClearToEmpty();
-  haserror_ = false;
+  win_ = false;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -877,24 +866,16 @@ const char* MapResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
     switch (tag >> 3) {
-      // bool hasError = 1;
+      // bool win = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          haserror_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          win_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // bytes msg = 2;
+      // bytes map = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
-          auto str = _internal_mutable_msg();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // bytes map = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
           auto str = _internal_mutable_map();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
@@ -928,22 +909,16 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // bool hasError = 1;
-  if (this->haserror() != 0) {
+  // bool win = 1;
+  if (this->win() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_haserror(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_win(), target);
   }
 
-  // bytes msg = 2;
-  if (this->msg().size() > 0) {
-    target = stream->WriteBytesMaybeAliased(
-        2, this->_internal_msg(), target);
-  }
-
-  // bytes map = 3;
+  // bytes map = 2;
   if (this->map().size() > 0) {
     target = stream->WriteBytesMaybeAliased(
-        3, this->_internal_map(), target);
+        2, this->_internal_map(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -962,22 +937,15 @@ size_t MapResponse::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // bytes msg = 2;
-  if (this->msg().size() > 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
-        this->_internal_msg());
-  }
-
-  // bytes map = 3;
+  // bytes map = 2;
   if (this->map().size() > 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
         this->_internal_map());
   }
 
-  // bool hasError = 1;
-  if (this->haserror() != 0) {
+  // bool win = 1;
+  if (this->win() != 0) {
     total_size += 1 + 1;
   }
 
@@ -1012,14 +980,11 @@ void MapResponse::MergeFrom(const MapResponse& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from.msg().size() > 0) {
-    _internal_set_msg(from._internal_msg());
-  }
   if (from.map().size() > 0) {
     _internal_set_map(from._internal_map());
   }
-  if (from.haserror() != 0) {
-    _internal_set_haserror(from._internal_haserror());
+  if (from.win() != 0) {
+    _internal_set_win(from._internal_win());
   }
 }
 
@@ -1044,9 +1009,8 @@ bool MapResponse::IsInitialized() const {
 void MapResponse::InternalSwap(MapResponse* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  msg_.Swap(&other->msg_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   map_.Swap(&other->map_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  swap(haserror_, other->haserror_);
+  swap(win_, other->win_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata MapResponse::GetMetadata() const {
