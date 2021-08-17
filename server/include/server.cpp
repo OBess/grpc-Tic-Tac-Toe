@@ -93,7 +93,6 @@ namespace server
         }
 
         GameServerImpl::GameServerImpl()
-            : m_lastTurn(2)
         {
             for (size_t i = 0; i < m_size; ++i)
             {
@@ -106,6 +105,8 @@ namespace server
         // Network methods
         Status GameServerImpl::StartGame(ServerContext *context, const ReadyRequest *request, ReadyResponse *response)
         {
+            std::cout << m_players << std::endl;
+
             if (m_players > 2)
                 return {grpc::StatusCode::UNAVAILABLE, "Two player are connected."};
 
@@ -131,8 +132,8 @@ namespace server
 
             m_map[y][x] = (request->id() % 2 ? 'x' : 'o');
 
-            response->set_win(isWon());
             response->set_map(BuildMap());
+            m_winner = isWon() ? request->id() : -1;
 
             m_lastTurn = request->id();
 
@@ -147,6 +148,8 @@ namespace server
                 return Status::OK;
             }
 
+            response->set_isend(m_winner != -1);
+            response->set_winner(m_winner);
             response->set_map(BuildMap());
 
             return Status::OK;

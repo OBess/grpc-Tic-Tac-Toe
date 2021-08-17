@@ -59,7 +59,7 @@ namespace client
             StepResponse Step(unsigned x, unsigned y) noexcept;
 
             // Make step
-            std::string GetState() noexcept;
+            StateResponse GetState() noexcept;
 
             char getSide() const noexcept;
 

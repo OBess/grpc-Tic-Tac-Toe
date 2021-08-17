@@ -58,8 +58,7 @@ struct StepRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT StepRequestDefaultTypeInternal _StepRequest_default_instance_;
 constexpr StepResponse::StepResponse(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : map_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
-  , win_(false){}
+  : map_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
 struct StepResponseDefaultTypeInternal {
   constexpr StepResponseDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -83,7 +82,9 @@ struct StateRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT StateRequestDefaultTypeInternal _StateRequest_default_instance_;
 constexpr StateResponse::StateResponse(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : map_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+  : map_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , isend_(false)
+  , winner_(0){}
 struct StateResponseDefaultTypeInternal {
   constexpr StateResponseDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -125,7 +126,6 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_game_5fservice_2eproto::offset
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::GameService::StepResponse, win_),
   PROTOBUF_FIELD_OFFSET(::GameService::StepResponse, map_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::GameService::StateRequest, _internal_metadata_),
@@ -138,6 +138,8 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_game_5fservice_2eproto::offset
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::GameService::StateResponse, isend_),
+  PROTOBUF_FIELD_OFFSET(::GameService::StateResponse, winner_),
   PROTOBUF_FIELD_OFFSET(::GameService::StateResponse, map_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -145,8 +147,8 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 6, -1, sizeof(::GameService::ReadyResponse)},
   { 13, -1, sizeof(::GameService::StepRequest)},
   { 21, -1, sizeof(::GameService::StepResponse)},
-  { 28, -1, sizeof(::GameService::StateRequest)},
-  { 34, -1, sizeof(::GameService::StateResponse)},
+  { 27, -1, sizeof(::GameService::StateRequest)},
+  { 33, -1, sizeof(::GameService::StateResponse)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -162,19 +164,20 @@ const char descriptor_table_protodef_game_5fservice_2eproto[] PROTOBUF_SECTION_V
   "\n\022game_service.proto\022\013GameService\"\035\n\014Rea"
   "dyRequest\022\r\n\005ready\030\001 \001(\010\"(\n\rReadyRespons"
   "e\022\n\n\002id\030\001 \001(\005\022\013\n\003map\030\002 \001(\014\"/\n\013StepReques"
-  "t\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\022\n\n\002id\030\003 \001(\005\"(\n\014S"
-  "tepResponse\022\013\n\003win\030\001 \001(\010\022\013\n\003map\030\002 \001(\014\"\032\n"
-  "\014StateRequest\022\n\n\002id\030\001 \001(\005\"\034\n\rStateRespon"
-  "se\022\013\n\003map\030\001 \001(\0142\325\001\n\013GameService\022B\n\tStart"
-  "Game\022\031.GameService.ReadyRequest\032\032.GameSe"
-  "rvice.ReadyResponse\022\?\n\010MakeStep\022\030.GameSe"
-  "rvice.StepRequest\032\031.GameService.StepResp"
-  "onse\022A\n\010GetState\022\031.GameService.StateRequ"
-  "est\032\032.GameService.StateResponseb\006proto3"
+  "t\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\022\n\n\002id\030\003 \001(\005\"\033\n\014S"
+  "tepResponse\022\013\n\003map\030\002 \001(\014\"\032\n\014StateRequest"
+  "\022\n\n\002id\030\001 \001(\005\";\n\rStateResponse\022\r\n\005isEnd\030\001"
+  " \001(\010\022\016\n\006winner\030\002 \001(\005\022\013\n\003map\030\003 \001(\0142\325\001\n\013Ga"
+  "meService\022B\n\tStartGame\022\031.GameService.Rea"
+  "dyRequest\032\032.GameService.ReadyResponse\022\?\n"
+  "\010MakeStep\022\030.GameService.StepRequest\032\031.Ga"
+  "meService.StepResponse\022A\n\010GetState\022\031.Gam"
+  "eService.StateRequest\032\032.GameService.Stat"
+  "eResponseb\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_game_5fservice_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_game_5fservice_2eproto = {
-  false, false, 479, descriptor_table_protodef_game_5fservice_2eproto, "game_service.proto", 
+  false, false, 497, descriptor_table_protodef_game_5fservice_2eproto, "game_service.proto", 
   &descriptor_table_game_5fservice_2eproto_once, nullptr, 0, 6,
   schemas, file_default_instances, TableStruct_game_5fservice_2eproto::offsets,
   file_level_metadata_game_5fservice_2eproto, file_level_enum_descriptors_game_5fservice_2eproto, file_level_service_descriptors_game_5fservice_2eproto,
@@ -865,13 +868,11 @@ StepResponse::StepResponse(const StepResponse& from)
     map_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_map(), 
       GetArena());
   }
-  win_ = from.win_;
   // @@protoc_insertion_point(copy_constructor:GameService.StepResponse)
 }
 
 void StepResponse::SharedCtor() {
 map_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-win_ = false;
 }
 
 StepResponse::~StepResponse() {
@@ -902,7 +903,6 @@ void StepResponse::Clear() {
   (void) cached_has_bits;
 
   map_.ClearToEmpty();
-  win_ = false;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -913,13 +913,6 @@ const char* StepResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
     switch (tag >> 3) {
-      // bool win = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          win_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
       // bytes map = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
@@ -956,12 +949,6 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // bool win = 1;
-  if (this->win() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_win(), target);
-  }
-
   // bytes map = 2;
   if (this->map().size() > 0) {
     target = stream->WriteBytesMaybeAliased(
@@ -989,11 +976,6 @@ size_t StepResponse::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
         this->_internal_map());
-  }
-
-  // bool win = 1;
-  if (this->win() != 0) {
-    total_size += 1 + 1;
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1030,9 +1012,6 @@ void StepResponse::MergeFrom(const StepResponse& from) {
   if (from.map().size() > 0) {
     _internal_set_map(from._internal_map());
   }
-  if (from.win() != 0) {
-    _internal_set_win(from._internal_win());
-  }
 }
 
 void StepResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -1057,7 +1036,6 @@ void StepResponse::InternalSwap(StepResponse* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   map_.Swap(&other->map_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  swap(win_, other->win_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata StepResponse::GetMetadata() const {
@@ -1274,11 +1252,18 @@ StateResponse::StateResponse(const StateResponse& from)
     map_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_map(), 
       GetArena());
   }
+  ::memcpy(&isend_, &from.isend_,
+    static_cast<size_t>(reinterpret_cast<char*>(&winner_) -
+    reinterpret_cast<char*>(&isend_)) + sizeof(winner_));
   // @@protoc_insertion_point(copy_constructor:GameService.StateResponse)
 }
 
 void StateResponse::SharedCtor() {
 map_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&isend_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&winner_) -
+    reinterpret_cast<char*>(&isend_)) + sizeof(winner_));
 }
 
 StateResponse::~StateResponse() {
@@ -1309,6 +1294,9 @@ void StateResponse::Clear() {
   (void) cached_has_bits;
 
   map_.ClearToEmpty();
+  ::memset(&isend_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&winner_) -
+      reinterpret_cast<char*>(&isend_)) + sizeof(winner_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1319,9 +1307,23 @@ const char* StateResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
     switch (tag >> 3) {
-      // bytes map = 1;
+      // bool isEnd = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          isend_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int32 winner = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          winner_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bytes map = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
           auto str = _internal_mutable_map();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
@@ -1355,10 +1357,22 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // bytes map = 1;
+  // bool isEnd = 1;
+  if (this->isend() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_isend(), target);
+  }
+
+  // int32 winner = 2;
+  if (this->winner() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_winner(), target);
+  }
+
+  // bytes map = 3;
   if (this->map().size() > 0) {
     target = stream->WriteBytesMaybeAliased(
-        1, this->_internal_map(), target);
+        3, this->_internal_map(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1377,11 +1391,23 @@ size_t StateResponse::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // bytes map = 1;
+  // bytes map = 3;
   if (this->map().size() > 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
         this->_internal_map());
+  }
+
+  // bool isEnd = 1;
+  if (this->isend() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // int32 winner = 2;
+  if (this->winner() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_winner());
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1418,6 +1444,12 @@ void StateResponse::MergeFrom(const StateResponse& from) {
   if (from.map().size() > 0) {
     _internal_set_map(from._internal_map());
   }
+  if (from.isend() != 0) {
+    _internal_set_isend(from._internal_isend());
+  }
+  if (from.winner() != 0) {
+    _internal_set_winner(from._internal_winner());
+  }
 }
 
 void StateResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -1442,6 +1474,12 @@ void StateResponse::InternalSwap(StateResponse* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   map_.Swap(&other->map_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(StateResponse, winner_)
+      + sizeof(StateResponse::winner_)
+      - PROTOBUF_FIELD_OFFSET(StateResponse, isend_)>(
+          reinterpret_cast<char*>(&isend_),
+          reinterpret_cast<char*>(&other->isend_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata StateResponse::GetMetadata() const {

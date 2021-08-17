@@ -49,7 +49,8 @@ namespace server
             int m_players{1};
             const size_t m_size = 3;
 
-            int m_lastTurn;
+            int m_lastTurn = 2;
+            int m_winner = -1;
 
             // Build instance of map in string type
             std::string BuildMap() const noexcept;

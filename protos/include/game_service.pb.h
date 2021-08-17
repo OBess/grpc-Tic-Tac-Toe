@@ -651,7 +651,6 @@ class StepResponse PROTOBUF_FINAL :
 
   enum : int {
     kMapFieldNumber = 2,
-    kWinFieldNumber = 1,
   };
   // bytes map = 2;
   void clear_map();
@@ -669,15 +668,6 @@ class StepResponse PROTOBUF_FINAL :
   std::string* _internal_mutable_map();
   public:
 
-  // bool win = 1;
-  void clear_win();
-  bool win() const;
-  void set_win(bool value);
-  private:
-  bool _internal_win() const;
-  void _internal_set_win(bool value);
-  public:
-
   // @@protoc_insertion_point(class_scope:GameService.StepResponse)
  private:
   class _Internal;
@@ -686,7 +676,6 @@ class StepResponse PROTOBUF_FINAL :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr map_;
-  bool win_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_game_5fservice_2eproto;
 };
@@ -942,9 +931,11 @@ class StateResponse PROTOBUF_FINAL :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kMapFieldNumber = 1,
+    kMapFieldNumber = 3,
+    kIsEndFieldNumber = 1,
+    kWinnerFieldNumber = 2,
   };
-  // bytes map = 1;
+  // bytes map = 3;
   void clear_map();
   const std::string& map() const;
   void set_map(const std::string& value);
@@ -960,6 +951,24 @@ class StateResponse PROTOBUF_FINAL :
   std::string* _internal_mutable_map();
   public:
 
+  // bool isEnd = 1;
+  void clear_isend();
+  bool isend() const;
+  void set_isend(bool value);
+  private:
+  bool _internal_isend() const;
+  void _internal_set_isend(bool value);
+  public:
+
+  // int32 winner = 2;
+  void clear_winner();
+  ::PROTOBUF_NAMESPACE_ID::int32 winner() const;
+  void set_winner(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_winner() const;
+  void _internal_set_winner(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
   // @@protoc_insertion_point(class_scope:GameService.StateResponse)
  private:
   class _Internal;
@@ -968,6 +977,8 @@ class StateResponse PROTOBUF_FINAL :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr map_;
+  bool isend_;
+  ::PROTOBUF_NAMESPACE_ID::int32 winner_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_game_5fservice_2eproto;
 };
@@ -1155,26 +1166,6 @@ inline void StepRequest::set_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
 
 // StepResponse
 
-// bool win = 1;
-inline void StepResponse::clear_win() {
-  win_ = false;
-}
-inline bool StepResponse::_internal_win() const {
-  return win_;
-}
-inline bool StepResponse::win() const {
-  // @@protoc_insertion_point(field_get:GameService.StepResponse.win)
-  return _internal_win();
-}
-inline void StepResponse::_internal_set_win(bool value) {
-  
-  win_ = value;
-}
-inline void StepResponse::set_win(bool value) {
-  _internal_set_win(value);
-  // @@protoc_insertion_point(field_set:GameService.StepResponse.win)
-}
-
 // bytes map = 2;
 inline void StepResponse::clear_map() {
   map_.ClearToEmpty();
@@ -1264,7 +1255,47 @@ inline void StateRequest::set_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
 
 // StateResponse
 
-// bytes map = 1;
+// bool isEnd = 1;
+inline void StateResponse::clear_isend() {
+  isend_ = false;
+}
+inline bool StateResponse::_internal_isend() const {
+  return isend_;
+}
+inline bool StateResponse::isend() const {
+  // @@protoc_insertion_point(field_get:GameService.StateResponse.isEnd)
+  return _internal_isend();
+}
+inline void StateResponse::_internal_set_isend(bool value) {
+  
+  isend_ = value;
+}
+inline void StateResponse::set_isend(bool value) {
+  _internal_set_isend(value);
+  // @@protoc_insertion_point(field_set:GameService.StateResponse.isEnd)
+}
+
+// int32 winner = 2;
+inline void StateResponse::clear_winner() {
+  winner_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 StateResponse::_internal_winner() const {
+  return winner_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 StateResponse::winner() const {
+  // @@protoc_insertion_point(field_get:GameService.StateResponse.winner)
+  return _internal_winner();
+}
+inline void StateResponse::_internal_set_winner(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  winner_ = value;
+}
+inline void StateResponse::set_winner(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_winner(value);
+  // @@protoc_insertion_point(field_set:GameService.StateResponse.winner)
+}
+
+// bytes map = 3;
 inline void StateResponse::clear_map() {
   map_.ClearToEmpty();
 }

@@ -21,7 +21,6 @@ message StepRequest{
 }
 
 message StepResponse{
-    bool win = 1;
     bytes map = 2;
 }
 
@@ -31,7 +30,9 @@ message StateRequest{
 }
 
 message StateResponse{    
-    bytes map = 1;
+    bool isEnd = 1;
+    int32 winner = 2;
+    bytes map = 3;
 }
 
 

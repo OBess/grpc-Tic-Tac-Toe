@@ -15,20 +15,20 @@ namespace client
             ReadyRequest request;
             request.set_ready(true);
 
-            ReadyResponse stepResponse;
+            ReadyResponse response;
             ClientContext context;
 
-            Status status = m_stub->StartGame(&context, request, &stepResponse);
+            Status status = m_stub->StartGame(&context, request, &response);
 
             if (status.ok())
             {
-                m_id = stepResponse.id();
+                m_id = response.id();
                 m_side = m_id % 2 ? 'x' : 'o';
             }
             else
                 std::cout << RED << status.error_code() << ": " << status.error_message() << NC << std::endl;
 
-            return {stepResponse, status.ok()};
+            return {response, status.ok()};
         }
 
         // Make step
@@ -39,10 +39,10 @@ namespace client
             request.set_x(x - 1);
             request.set_y(y - 1);
 
-            StepResponse stepResponse;
+            StepResponse response;
             ClientContext context;
 
-            Status status = m_stub->MakeStep(&context, request, &stepResponse);
+            Status status = m_stub->MakeStep(&context, request, &response);
 
             if (status.ok())
             {
@@ -50,19 +50,19 @@ namespace client
             else
                 std::cout << RED << status.error_code() << ": " << status.error_message() << NC << std::endl;
 
-            return stepResponse;
+            return response;
         }
 
         // Make step
-        std::string GameClient::GetState() noexcept
+        StateResponse GameClient::GetState() noexcept
         {
             StateRequest request;
             request.set_id(m_id);
 
-            StateResponse stepResponse;
+            StateResponse response;
             ClientContext context;
 
-            Status status = m_stub->GetState(&context, request, &stepResponse);
+            Status status = m_stub->GetState(&context, request, &response);
 
             if (status.ok())
             {
@@ -70,7 +70,7 @@ namespace client
             else
                 std::cout << RED << status.error_code() << ": " << status.error_message() << NC << std::endl;
 
-            return stepResponse.map();
+            return response;
         }
 
         char GameClient::getSide() const noexcept
@@ -88,8 +88,10 @@ namespace client
         if (!readyResponse.second)
             return;
 
+        StepResponse stepResponse;
+        StateResponse stateResponse;
+
         int x, y;
-        bool isWinner;
         std::string map = readyResponse.first.map();
 
         std::cout << YEL << "\tTic-Tac-Toe" << std::endl;
@@ -102,13 +104,12 @@ namespace client
 
         do
         {
-            if (clt.GetState() != "")
+            if (clt.GetState().map() != "")
             {
                 std::cout << "Enter x and y [1; 3]: ";
 
                 std::cin >> x >> y;
-                auto stepResponse = clt.Step(x, y);
-                isWinner = stepResponse.win();
+                stepResponse = clt.Step(x, y);
                 map = stepResponse.map();
 
                 std::cout << "Board: " << std::endl;
@@ -118,14 +119,16 @@ namespace client
 
             do
             {
-                map = clt.GetState();
+                stateResponse = clt.GetState();
+                map = stateResponse.map();
             } while (map == "");
 
             std::cout << "Board: " << std::endl;
             std::cout << map << std::endl;
 
-        } while (true);
+        } while (!stateResponse.isend());
 
+        std::cout << REDB << "The winner is " << (char)stateResponse.winner() << NC << std::endl;
         std::cout << YEL << "End of game" << NC << std::endl;
     }
 };
