@@ -79,17 +79,28 @@ namespace server
             // RightDiagonal check
             x = 0;
             o = 0;
-            for (int i = m_size - 1; i >= 0; --i)
+            for (int i = m_size - 1, j = 0; i >= 0; --i, ++j)
             {
-                if (m_map[i][i] == 'x')
+                if (m_map[j][i] == 'x')
                     ++x;
-                if (m_map[i][i] == 'o')
+                if (m_map[j][i] == 'o')
                     ++o;
             }
             if (x == m_size || o == m_size)
                 return true;
 
             return false;
+        }
+
+        bool GameServerImpl::filled() const noexcept
+        {
+            size_t count{};
+            for (const auto &i : m_map)
+                for (const auto &j : i)
+                    if (j == 'x' || j == 'o')
+                        ++count;
+
+            return count == (m_size * m_size);
         }
 
         GameServerImpl::GameServerImpl()
@@ -103,10 +114,8 @@ namespace server
         }
 
         // Network methods
-        Status GameServerImpl::StartGame(ServerContext *context, const ReadyRequest *request, ReadyResponse *response)
+        Status GameServerImpl::Connect(ServerContext *context, const ConnectRequest *request, ConnectResponse *response)
         {
-            std::cout << m_players << std::endl;
-
             if (m_players > 2)
                 return {grpc::StatusCode::UNAVAILABLE, "Two player are connected."};
 
@@ -119,6 +128,14 @@ namespace server
             return Status::OK;
         }
 
+        Status GameServerImpl::Disconnect(ServerContext *context, const DisconnectRequest *request, DisconnectResponse *response)
+        {
+            --m_players;
+            std::cout << YEL << "Player disconnected." << NC << std::endl;
+
+            return Status::OK;
+        }
+
         Status GameServerImpl::MakeStep(ServerContext *context, const StepRequest *request, StepResponse *response)
         {
             if (request->id() == m_lastTurn)
@@ -127,7 +144,7 @@ namespace server
             auto x = request->x();
             auto y = request->y();
 
-            if (m_map[y][x] != ' ' or x >= m_size or y >= m_size)
+            if (x >= m_size or y >= m_size or m_map[y][x] != ' ')
                 return {grpc::StatusCode::PERMISSION_DENIED, "Block is filled or out of range."};
 
             m_map[y][x] = (request->id() % 2 ? 'x' : 'o');
@@ -142,17 +159,26 @@ namespace server
 
         Status GameServerImpl::GetState(ServerContext *context, const StateRequest *request, StateResponse *response)
         {
-            if (request->id() == m_lastTurn)
-            {
-                response->set_map("");
-                return Status::OK;
-            }
-
-            response->set_isend(m_winner != -1);
+            m_end = m_winner != -1 or (m_winner == -1 and filled());
+            response->set_isend(m_end);
             response->set_winner(m_winner);
-            response->set_map(BuildMap());
+
+            if (request->id() == m_lastTurn)
+                response->set_map("");
+            else
+                response->set_map(BuildMap());
 
             return Status::OK;
+        }
+
+        bool GameServerImpl::isEnd() const noexcept
+        {
+            return m_end;
+        }
+
+        int GameServerImpl::amoutOfPlayer() const noexcept
+        {
+            return m_players;
         }
     }
 
@@ -168,6 +194,15 @@ namespace server
 
         auto server = builder.BuildAndStart();
         std::cout << GRN << "Server listening on " << ip << NC << std::endl;
+
+        auto fut = std::async(
+            [&]()
+            {
+                while (!service.isEnd() or service.amoutOfPlayer() != 1)
+                {
+                }
+                server.get()->Shutdown();
+            });
 
         server.get()->Wait();
 

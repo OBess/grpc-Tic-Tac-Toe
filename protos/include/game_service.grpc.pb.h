@@ -37,12 +37,19 @@ class GameService final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status StartGame(::grpc::ClientContext* context, const ::GameService::ReadyRequest& request, ::GameService::ReadyResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::GameService::ReadyResponse>> AsyncStartGame(::grpc::ClientContext* context, const ::GameService::ReadyRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::GameService::ReadyResponse>>(AsyncStartGameRaw(context, request, cq));
+    virtual ::grpc::Status Connect(::grpc::ClientContext* context, const ::GameService::ConnectRequest& request, ::GameService::ConnectResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::GameService::ConnectResponse>> AsyncConnect(::grpc::ClientContext* context, const ::GameService::ConnectRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::GameService::ConnectResponse>>(AsyncConnectRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::GameService::ReadyResponse>> PrepareAsyncStartGame(::grpc::ClientContext* context, const ::GameService::ReadyRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::GameService::ReadyResponse>>(PrepareAsyncStartGameRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::GameService::ConnectResponse>> PrepareAsyncConnect(::grpc::ClientContext* context, const ::GameService::ConnectRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::GameService::ConnectResponse>>(PrepareAsyncConnectRaw(context, request, cq));
+    }
+    virtual ::grpc::Status Disconnect(::grpc::ClientContext* context, const ::GameService::DisconnectRequest& request, ::GameService::DisconnectResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::GameService::DisconnectResponse>> AsyncDisconnect(::grpc::ClientContext* context, const ::GameService::DisconnectRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::GameService::DisconnectResponse>>(AsyncDisconnectRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::GameService::DisconnectResponse>> PrepareAsyncDisconnect(::grpc::ClientContext* context, const ::GameService::DisconnectRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::GameService::DisconnectResponse>>(PrepareAsyncDisconnectRaw(context, request, cq));
     }
     virtual ::grpc::Status MakeStep(::grpc::ClientContext* context, const ::GameService::StepRequest& request, ::GameService::StepResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::GameService::StepResponse>> AsyncMakeStep(::grpc::ClientContext* context, const ::GameService::StepRequest& request, ::grpc::CompletionQueue* cq) {
@@ -61,11 +68,17 @@ class GameService final {
     class experimental_async_interface {
      public:
       virtual ~experimental_async_interface() {}
-      virtual void StartGame(::grpc::ClientContext* context, const ::GameService::ReadyRequest* request, ::GameService::ReadyResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Connect(::grpc::ClientContext* context, const ::GameService::ConnectRequest* request, ::GameService::ConnectResponse* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void StartGame(::grpc::ClientContext* context, const ::GameService::ReadyRequest* request, ::GameService::ReadyResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Connect(::grpc::ClientContext* context, const ::GameService::ConnectRequest* request, ::GameService::ConnectResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       #else
-      virtual void StartGame(::grpc::ClientContext* context, const ::GameService::ReadyRequest* request, ::GameService::ReadyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void Connect(::grpc::ClientContext* context, const ::GameService::ConnectRequest* request, ::GameService::ConnectResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      virtual void Disconnect(::grpc::ClientContext* context, const ::GameService::DisconnectRequest* request, ::GameService::DisconnectResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void Disconnect(::grpc::ClientContext* context, const ::GameService::DisconnectRequest* request, ::GameService::DisconnectResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void Disconnect(::grpc::ClientContext* context, const ::GameService::DisconnectRequest* request, ::GameService::DisconnectResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
       virtual void MakeStep(::grpc::ClientContext* context, const ::GameService::StepRequest* request, ::GameService::StepResponse* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -88,8 +101,10 @@ class GameService final {
     #endif
     virtual class experimental_async_interface* experimental_async() { return nullptr; }
   private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::GameService::ReadyResponse>* AsyncStartGameRaw(::grpc::ClientContext* context, const ::GameService::ReadyRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::GameService::ReadyResponse>* PrepareAsyncStartGameRaw(::grpc::ClientContext* context, const ::GameService::ReadyRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::GameService::ConnectResponse>* AsyncConnectRaw(::grpc::ClientContext* context, const ::GameService::ConnectRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::GameService::ConnectResponse>* PrepareAsyncConnectRaw(::grpc::ClientContext* context, const ::GameService::ConnectRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::GameService::DisconnectResponse>* AsyncDisconnectRaw(::grpc::ClientContext* context, const ::GameService::DisconnectRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::GameService::DisconnectResponse>* PrepareAsyncDisconnectRaw(::grpc::ClientContext* context, const ::GameService::DisconnectRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::GameService::StepResponse>* AsyncMakeStepRaw(::grpc::ClientContext* context, const ::GameService::StepRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::GameService::StepResponse>* PrepareAsyncMakeStepRaw(::grpc::ClientContext* context, const ::GameService::StepRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::GameService::StateResponse>* AsyncGetStateRaw(::grpc::ClientContext* context, const ::GameService::StateRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -98,12 +113,19 @@ class GameService final {
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
-    ::grpc::Status StartGame(::grpc::ClientContext* context, const ::GameService::ReadyRequest& request, ::GameService::ReadyResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::GameService::ReadyResponse>> AsyncStartGame(::grpc::ClientContext* context, const ::GameService::ReadyRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::GameService::ReadyResponse>>(AsyncStartGameRaw(context, request, cq));
+    ::grpc::Status Connect(::grpc::ClientContext* context, const ::GameService::ConnectRequest& request, ::GameService::ConnectResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::GameService::ConnectResponse>> AsyncConnect(::grpc::ClientContext* context, const ::GameService::ConnectRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::GameService::ConnectResponse>>(AsyncConnectRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::GameService::ReadyResponse>> PrepareAsyncStartGame(::grpc::ClientContext* context, const ::GameService::ReadyRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::GameService::ReadyResponse>>(PrepareAsyncStartGameRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::GameService::ConnectResponse>> PrepareAsyncConnect(::grpc::ClientContext* context, const ::GameService::ConnectRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::GameService::ConnectResponse>>(PrepareAsyncConnectRaw(context, request, cq));
+    }
+    ::grpc::Status Disconnect(::grpc::ClientContext* context, const ::GameService::DisconnectRequest& request, ::GameService::DisconnectResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::GameService::DisconnectResponse>> AsyncDisconnect(::grpc::ClientContext* context, const ::GameService::DisconnectRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::GameService::DisconnectResponse>>(AsyncDisconnectRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::GameService::DisconnectResponse>> PrepareAsyncDisconnect(::grpc::ClientContext* context, const ::GameService::DisconnectRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::GameService::DisconnectResponse>>(PrepareAsyncDisconnectRaw(context, request, cq));
     }
     ::grpc::Status MakeStep(::grpc::ClientContext* context, const ::GameService::StepRequest& request, ::GameService::StepResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::GameService::StepResponse>> AsyncMakeStep(::grpc::ClientContext* context, const ::GameService::StepRequest& request, ::grpc::CompletionQueue* cq) {
@@ -122,11 +144,17 @@ class GameService final {
     class experimental_async final :
       public StubInterface::experimental_async_interface {
      public:
-      void StartGame(::grpc::ClientContext* context, const ::GameService::ReadyRequest* request, ::GameService::ReadyResponse* response, std::function<void(::grpc::Status)>) override;
+      void Connect(::grpc::ClientContext* context, const ::GameService::ConnectRequest* request, ::GameService::ConnectResponse* response, std::function<void(::grpc::Status)>) override;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void StartGame(::grpc::ClientContext* context, const ::GameService::ReadyRequest* request, ::GameService::ReadyResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Connect(::grpc::ClientContext* context, const ::GameService::ConnectRequest* request, ::GameService::ConnectResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
-      void StartGame(::grpc::ClientContext* context, const ::GameService::ReadyRequest* request, ::GameService::ReadyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void Connect(::grpc::ClientContext* context, const ::GameService::ConnectRequest* request, ::GameService::ConnectResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void Disconnect(::grpc::ClientContext* context, const ::GameService::DisconnectRequest* request, ::GameService::DisconnectResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void Disconnect(::grpc::ClientContext* context, const ::GameService::DisconnectRequest* request, ::GameService::DisconnectResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void Disconnect(::grpc::ClientContext* context, const ::GameService::DisconnectRequest* request, ::GameService::DisconnectResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
       void MakeStep(::grpc::ClientContext* context, const ::GameService::StepRequest* request, ::GameService::StepResponse* response, std::function<void(::grpc::Status)>) override;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -151,13 +179,16 @@ class GameService final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class experimental_async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::GameService::ReadyResponse>* AsyncStartGameRaw(::grpc::ClientContext* context, const ::GameService::ReadyRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::GameService::ReadyResponse>* PrepareAsyncStartGameRaw(::grpc::ClientContext* context, const ::GameService::ReadyRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::GameService::ConnectResponse>* AsyncConnectRaw(::grpc::ClientContext* context, const ::GameService::ConnectRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::GameService::ConnectResponse>* PrepareAsyncConnectRaw(::grpc::ClientContext* context, const ::GameService::ConnectRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::GameService::DisconnectResponse>* AsyncDisconnectRaw(::grpc::ClientContext* context, const ::GameService::DisconnectRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::GameService::DisconnectResponse>* PrepareAsyncDisconnectRaw(::grpc::ClientContext* context, const ::GameService::DisconnectRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::GameService::StepResponse>* AsyncMakeStepRaw(::grpc::ClientContext* context, const ::GameService::StepRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::GameService::StepResponse>* PrepareAsyncMakeStepRaw(::grpc::ClientContext* context, const ::GameService::StepRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::GameService::StateResponse>* AsyncGetStateRaw(::grpc::ClientContext* context, const ::GameService::StateRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::GameService::StateResponse>* PrepareAsyncGetStateRaw(::grpc::ClientContext* context, const ::GameService::StateRequest& request, ::grpc::CompletionQueue* cq) override;
-    const ::grpc::internal::RpcMethod rpcmethod_StartGame_;
+    const ::grpc::internal::RpcMethod rpcmethod_Connect_;
+    const ::grpc::internal::RpcMethod rpcmethod_Disconnect_;
     const ::grpc::internal::RpcMethod rpcmethod_MakeStep_;
     const ::grpc::internal::RpcMethod rpcmethod_GetState_;
   };
@@ -167,28 +198,49 @@ class GameService final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status StartGame(::grpc::ServerContext* context, const ::GameService::ReadyRequest* request, ::GameService::ReadyResponse* response);
+    virtual ::grpc::Status Connect(::grpc::ServerContext* context, const ::GameService::ConnectRequest* request, ::GameService::ConnectResponse* response);
+    virtual ::grpc::Status Disconnect(::grpc::ServerContext* context, const ::GameService::DisconnectRequest* request, ::GameService::DisconnectResponse* response);
     virtual ::grpc::Status MakeStep(::grpc::ServerContext* context, const ::GameService::StepRequest* request, ::GameService::StepResponse* response);
     virtual ::grpc::Status GetState(::grpc::ServerContext* context, const ::GameService::StateRequest* request, ::GameService::StateResponse* response);
   };
   template <class BaseClass>
-  class WithAsyncMethod_StartGame : public BaseClass {
+  class WithAsyncMethod_Connect : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_StartGame() {
+    WithAsyncMethod_Connect() {
       ::grpc::Service::MarkMethodAsync(0);
     }
-    ~WithAsyncMethod_StartGame() override {
+    ~WithAsyncMethod_Connect() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status StartGame(::grpc::ServerContext* /*context*/, const ::GameService::ReadyRequest* /*request*/, ::GameService::ReadyResponse* /*response*/) override {
+    ::grpc::Status Connect(::grpc::ServerContext* /*context*/, const ::GameService::ConnectRequest* /*request*/, ::GameService::ConnectResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestStartGame(::grpc::ServerContext* context, ::GameService::ReadyRequest* request, ::grpc::ServerAsyncResponseWriter< ::GameService::ReadyResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestConnect(::grpc::ServerContext* context, ::GameService::ConnectRequest* request, ::grpc::ServerAsyncResponseWriter< ::GameService::ConnectResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Disconnect : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Disconnect() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_Disconnect() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Disconnect(::grpc::ServerContext* /*context*/, const ::GameService::DisconnectRequest* /*request*/, ::GameService::DisconnectResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDisconnect(::grpc::ServerContext* context, ::GameService::DisconnectRequest* request, ::grpc::ServerAsyncResponseWriter< ::GameService::DisconnectResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -197,7 +249,7 @@ class GameService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_MakeStep() {
-      ::grpc::Service::MarkMethodAsync(1);
+      ::grpc::Service::MarkMethodAsync(2);
     }
     ~WithAsyncMethod_MakeStep() override {
       BaseClassMustBeDerivedFromService(this);
@@ -208,7 +260,7 @@ class GameService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestMakeStep(::grpc::ServerContext* context, ::GameService::StepRequest* request, ::grpc::ServerAsyncResponseWriter< ::GameService::StepResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -217,7 +269,7 @@ class GameService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetState() {
-      ::grpc::Service::MarkMethodAsync(2);
+      ::grpc::Service::MarkMethodAsync(3);
     }
     ~WithAsyncMethod_GetState() override {
       BaseClassMustBeDerivedFromService(this);
@@ -228,54 +280,101 @@ class GameService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetState(::grpc::ServerContext* context, ::GameService::StateRequest* request, ::grpc::ServerAsyncResponseWriter< ::GameService::StateResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_StartGame<WithAsyncMethod_MakeStep<WithAsyncMethod_GetState<Service > > > AsyncService;
+  typedef WithAsyncMethod_Connect<WithAsyncMethod_Disconnect<WithAsyncMethod_MakeStep<WithAsyncMethod_GetState<Service > > > > AsyncService;
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_StartGame : public BaseClass {
+  class ExperimentalWithCallbackMethod_Connect : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_StartGame() {
+    ExperimentalWithCallbackMethod_Connect() {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::Service::
     #else
       ::grpc::Service::experimental().
     #endif
         MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::GameService::ReadyRequest, ::GameService::ReadyResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::GameService::ConnectRequest, ::GameService::ConnectResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
     #else
                    ::grpc::experimental::CallbackServerContext*
     #endif
-                     context, const ::GameService::ReadyRequest* request, ::GameService::ReadyResponse* response) { return this->StartGame(context, request, response); }));}
-    void SetMessageAllocatorFor_StartGame(
-        ::grpc::experimental::MessageAllocator< ::GameService::ReadyRequest, ::GameService::ReadyResponse>* allocator) {
+                     context, const ::GameService::ConnectRequest* request, ::GameService::ConnectResponse* response) { return this->Connect(context, request, response); }));}
+    void SetMessageAllocatorFor_Connect(
+        ::grpc::experimental::MessageAllocator< ::GameService::ConnectRequest, ::GameService::ConnectResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
     #else
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(0);
     #endif
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::GameService::ReadyRequest, ::GameService::ReadyResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::GameService::ConnectRequest, ::GameService::ConnectResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_StartGame() override {
+    ~ExperimentalWithCallbackMethod_Connect() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status StartGame(::grpc::ServerContext* /*context*/, const ::GameService::ReadyRequest* /*request*/, ::GameService::ReadyResponse* /*response*/) override {
+    ::grpc::Status Connect(::grpc::ServerContext* /*context*/, const ::GameService::ConnectRequest* /*request*/, ::GameService::ConnectResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* StartGame(
-      ::grpc::CallbackServerContext* /*context*/, const ::GameService::ReadyRequest* /*request*/, ::GameService::ReadyResponse* /*response*/)
+    virtual ::grpc::ServerUnaryReactor* Connect(
+      ::grpc::CallbackServerContext* /*context*/, const ::GameService::ConnectRequest* /*request*/, ::GameService::ConnectResponse* /*response*/)
     #else
-    virtual ::grpc::experimental::ServerUnaryReactor* StartGame(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::GameService::ReadyRequest* /*request*/, ::GameService::ReadyResponse* /*response*/)
+    virtual ::grpc::experimental::ServerUnaryReactor* Connect(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::GameService::ConnectRequest* /*request*/, ::GameService::ConnectResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_Disconnect : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_Disconnect() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::GameService::DisconnectRequest, ::GameService::DisconnectResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::GameService::DisconnectRequest* request, ::GameService::DisconnectResponse* response) { return this->Disconnect(context, request, response); }));}
+    void SetMessageAllocatorFor_Disconnect(
+        ::grpc::experimental::MessageAllocator< ::GameService::DisconnectRequest, ::GameService::DisconnectResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
+    #endif
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::GameService::DisconnectRequest, ::GameService::DisconnectResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_Disconnect() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Disconnect(::grpc::ServerContext* /*context*/, const ::GameService::DisconnectRequest* /*request*/, ::GameService::DisconnectResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* Disconnect(
+      ::grpc::CallbackServerContext* /*context*/, const ::GameService::DisconnectRequest* /*request*/, ::GameService::DisconnectResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* Disconnect(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::GameService::DisconnectRequest* /*request*/, ::GameService::DisconnectResponse* /*response*/)
     #endif
       { return nullptr; }
   };
@@ -290,7 +389,7 @@ class GameService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(1,
+        MarkMethodCallback(2,
           new ::grpc::internal::CallbackUnaryHandler< ::GameService::StepRequest, ::GameService::StepResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -302,9 +401,9 @@ class GameService final {
     void SetMessageAllocatorFor_MakeStep(
         ::grpc::experimental::MessageAllocator< ::GameService::StepRequest, ::GameService::StepResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(2);
     #endif
       static_cast<::grpc::internal::CallbackUnaryHandler< ::GameService::StepRequest, ::GameService::StepResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -337,7 +436,7 @@ class GameService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(2,
+        MarkMethodCallback(3,
           new ::grpc::internal::CallbackUnaryHandler< ::GameService::StateRequest, ::GameService::StateResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -349,9 +448,9 @@ class GameService final {
     void SetMessageAllocatorFor_GetState(
         ::grpc::experimental::MessageAllocator< ::GameService::StateRequest, ::GameService::StateResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(2);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(3);
     #endif
       static_cast<::grpc::internal::CallbackUnaryHandler< ::GameService::StateRequest, ::GameService::StateResponse>*>(handler)
               ->SetMessageAllocator(allocator);
@@ -374,23 +473,40 @@ class GameService final {
       { return nullptr; }
   };
   #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-  typedef ExperimentalWithCallbackMethod_StartGame<ExperimentalWithCallbackMethod_MakeStep<ExperimentalWithCallbackMethod_GetState<Service > > > CallbackService;
+  typedef ExperimentalWithCallbackMethod_Connect<ExperimentalWithCallbackMethod_Disconnect<ExperimentalWithCallbackMethod_MakeStep<ExperimentalWithCallbackMethod_GetState<Service > > > > CallbackService;
   #endif
 
-  typedef ExperimentalWithCallbackMethod_StartGame<ExperimentalWithCallbackMethod_MakeStep<ExperimentalWithCallbackMethod_GetState<Service > > > ExperimentalCallbackService;
+  typedef ExperimentalWithCallbackMethod_Connect<ExperimentalWithCallbackMethod_Disconnect<ExperimentalWithCallbackMethod_MakeStep<ExperimentalWithCallbackMethod_GetState<Service > > > > ExperimentalCallbackService;
   template <class BaseClass>
-  class WithGenericMethod_StartGame : public BaseClass {
+  class WithGenericMethod_Connect : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_StartGame() {
+    WithGenericMethod_Connect() {
       ::grpc::Service::MarkMethodGeneric(0);
     }
-    ~WithGenericMethod_StartGame() override {
+    ~WithGenericMethod_Connect() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status StartGame(::grpc::ServerContext* /*context*/, const ::GameService::ReadyRequest* /*request*/, ::GameService::ReadyResponse* /*response*/) override {
+    ::grpc::Status Connect(::grpc::ServerContext* /*context*/, const ::GameService::ConnectRequest* /*request*/, ::GameService::ConnectResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Disconnect : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Disconnect() {
+      ::grpc::Service::MarkMethodGeneric(1);
+    }
+    ~WithGenericMethod_Disconnect() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Disconnect(::grpc::ServerContext* /*context*/, const ::GameService::DisconnectRequest* /*request*/, ::GameService::DisconnectResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -401,7 +517,7 @@ class GameService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_MakeStep() {
-      ::grpc::Service::MarkMethodGeneric(1);
+      ::grpc::Service::MarkMethodGeneric(2);
     }
     ~WithGenericMethod_MakeStep() override {
       BaseClassMustBeDerivedFromService(this);
@@ -418,7 +534,7 @@ class GameService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetState() {
-      ::grpc::Service::MarkMethodGeneric(2);
+      ::grpc::Service::MarkMethodGeneric(3);
     }
     ~WithGenericMethod_GetState() override {
       BaseClassMustBeDerivedFromService(this);
@@ -430,23 +546,43 @@ class GameService final {
     }
   };
   template <class BaseClass>
-  class WithRawMethod_StartGame : public BaseClass {
+  class WithRawMethod_Connect : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_StartGame() {
+    WithRawMethod_Connect() {
       ::grpc::Service::MarkMethodRaw(0);
     }
-    ~WithRawMethod_StartGame() override {
+    ~WithRawMethod_Connect() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status StartGame(::grpc::ServerContext* /*context*/, const ::GameService::ReadyRequest* /*request*/, ::GameService::ReadyResponse* /*response*/) override {
+    ::grpc::Status Connect(::grpc::ServerContext* /*context*/, const ::GameService::ConnectRequest* /*request*/, ::GameService::ConnectResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestStartGame(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestConnect(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Disconnect : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Disconnect() {
+      ::grpc::Service::MarkMethodRaw(1);
+    }
+    ~WithRawMethod_Disconnect() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Disconnect(::grpc::ServerContext* /*context*/, const ::GameService::DisconnectRequest* /*request*/, ::GameService::DisconnectResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDisconnect(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -455,7 +591,7 @@ class GameService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_MakeStep() {
-      ::grpc::Service::MarkMethodRaw(1);
+      ::grpc::Service::MarkMethodRaw(2);
     }
     ~WithRawMethod_MakeStep() override {
       BaseClassMustBeDerivedFromService(this);
@@ -466,7 +602,7 @@ class GameService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestMakeStep(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -475,7 +611,7 @@ class GameService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetState() {
-      ::grpc::Service::MarkMethodRaw(2);
+      ::grpc::Service::MarkMethodRaw(3);
     }
     ~WithRawMethod_GetState() override {
       BaseClassMustBeDerivedFromService(this);
@@ -486,15 +622,15 @@ class GameService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetState(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_StartGame : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_Connect : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_StartGame() {
+    ExperimentalWithRawCallbackMethod_Connect() {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::Service::
     #else
@@ -508,21 +644,59 @@ class GameService final {
     #else
                    ::grpc::experimental::CallbackServerContext*
     #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->StartGame(context, request, response); }));
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Connect(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_StartGame() override {
+    ~ExperimentalWithRawCallbackMethod_Connect() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status StartGame(::grpc::ServerContext* /*context*/, const ::GameService::ReadyRequest* /*request*/, ::GameService::ReadyResponse* /*response*/) override {
+    ::grpc::Status Connect(::grpc::ServerContext* /*context*/, const ::GameService::ConnectRequest* /*request*/, ::GameService::ConnectResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* StartGame(
+    virtual ::grpc::ServerUnaryReactor* Connect(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
     #else
-    virtual ::grpc::experimental::ServerUnaryReactor* StartGame(
+    virtual ::grpc::experimental::ServerUnaryReactor* Connect(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_Disconnect : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_Disconnect() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Disconnect(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_Disconnect() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Disconnect(::grpc::ServerContext* /*context*/, const ::GameService::DisconnectRequest* /*request*/, ::GameService::DisconnectResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* Disconnect(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* Disconnect(
       ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
     #endif
       { return nullptr; }
@@ -538,7 +712,7 @@ class GameService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(1,
+        MarkMethodRawCallback(2,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -576,7 +750,7 @@ class GameService final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodRawCallback(2,
+        MarkMethodRawCallback(3,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -604,31 +778,58 @@ class GameService final {
       { return nullptr; }
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_StartGame : public BaseClass {
+  class WithStreamedUnaryMethod_Connect : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_StartGame() {
+    WithStreamedUnaryMethod_Connect() {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::GameService::ReadyRequest, ::GameService::ReadyResponse>(
+          ::GameService::ConnectRequest, ::GameService::ConnectResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::GameService::ReadyRequest, ::GameService::ReadyResponse>* streamer) {
-                       return this->StreamedStartGame(context,
+                     ::GameService::ConnectRequest, ::GameService::ConnectResponse>* streamer) {
+                       return this->StreamedConnect(context,
                          streamer);
                   }));
     }
-    ~WithStreamedUnaryMethod_StartGame() override {
+    ~WithStreamedUnaryMethod_Connect() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status StartGame(::grpc::ServerContext* /*context*/, const ::GameService::ReadyRequest* /*request*/, ::GameService::ReadyResponse* /*response*/) override {
+    ::grpc::Status Connect(::grpc::ServerContext* /*context*/, const ::GameService::ConnectRequest* /*request*/, ::GameService::ConnectResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedStartGame(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::GameService::ReadyRequest,::GameService::ReadyResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedConnect(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::GameService::ConnectRequest,::GameService::ConnectResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Disconnect : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Disconnect() {
+      ::grpc::Service::MarkMethodStreamed(1,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::GameService::DisconnectRequest, ::GameService::DisconnectResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::GameService::DisconnectRequest, ::GameService::DisconnectResponse>* streamer) {
+                       return this->StreamedDisconnect(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Disconnect() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Disconnect(::grpc::ServerContext* /*context*/, const ::GameService::DisconnectRequest* /*request*/, ::GameService::DisconnectResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedDisconnect(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::GameService::DisconnectRequest,::GameService::DisconnectResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_MakeStep : public BaseClass {
@@ -636,7 +837,7 @@ class GameService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_MakeStep() {
-      ::grpc::Service::MarkMethodStreamed(1,
+      ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
           ::GameService::StepRequest, ::GameService::StepResponse>(
             [this](::grpc::ServerContext* context,
@@ -663,7 +864,7 @@ class GameService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetState() {
-      ::grpc::Service::MarkMethodStreamed(2,
+      ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::StreamedUnaryHandler<
           ::GameService::StateRequest, ::GameService::StateResponse>(
             [this](::grpc::ServerContext* context,
@@ -684,9 +885,9 @@ class GameService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetState(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::GameService::StateRequest,::GameService::StateResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_StartGame<WithStreamedUnaryMethod_MakeStep<WithStreamedUnaryMethod_GetState<Service > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_Connect<WithStreamedUnaryMethod_Disconnect<WithStreamedUnaryMethod_MakeStep<WithStreamedUnaryMethod_GetState<Service > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_StartGame<WithStreamedUnaryMethod_MakeStep<WithStreamedUnaryMethod_GetState<Service > > > StreamedService;
+  typedef WithStreamedUnaryMethod_Connect<WithStreamedUnaryMethod_Disconnect<WithStreamedUnaryMethod_MakeStep<WithStreamedUnaryMethod_GetState<Service > > > > StreamedService;
 };
 
 }  // namespace GameService

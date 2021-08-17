@@ -22,7 +22,8 @@
 namespace GameService {
 
 static const char* GameService_method_names[] = {
-  "/GameService.GameService/StartGame",
+  "/GameService.GameService/Connect",
+  "/GameService.GameService/Disconnect",
   "/GameService.GameService/MakeStep",
   "/GameService.GameService/GetState",
 };
@@ -34,30 +35,54 @@ std::unique_ptr< GameService::Stub> GameService::NewStub(const std::shared_ptr< 
 }
 
 GameService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
-  : channel_(channel), rpcmethod_StartGame_(GameService_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_MakeStep_(GameService_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetState_(GameService_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  : channel_(channel), rpcmethod_Connect_(GameService_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Disconnect_(GameService_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_MakeStep_(GameService_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetState_(GameService_method_names[3], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status GameService::Stub::StartGame(::grpc::ClientContext* context, const ::GameService::ReadyRequest& request, ::GameService::ReadyResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::GameService::ReadyRequest, ::GameService::ReadyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_StartGame_, context, request, response);
+::grpc::Status GameService::Stub::Connect(::grpc::ClientContext* context, const ::GameService::ConnectRequest& request, ::GameService::ConnectResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::GameService::ConnectRequest, ::GameService::ConnectResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Connect_, context, request, response);
 }
 
-void GameService::Stub::experimental_async::StartGame(::grpc::ClientContext* context, const ::GameService::ReadyRequest* request, ::GameService::ReadyResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::GameService::ReadyRequest, ::GameService::ReadyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_StartGame_, context, request, response, std::move(f));
+void GameService::Stub::experimental_async::Connect(::grpc::ClientContext* context, const ::GameService::ConnectRequest* request, ::GameService::ConnectResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::GameService::ConnectRequest, ::GameService::ConnectResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Connect_, context, request, response, std::move(f));
 }
 
-void GameService::Stub::experimental_async::StartGame(::grpc::ClientContext* context, const ::GameService::ReadyRequest* request, ::GameService::ReadyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_StartGame_, context, request, response, reactor);
+void GameService::Stub::experimental_async::Connect(::grpc::ClientContext* context, const ::GameService::ConnectRequest* request, ::GameService::ConnectResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Connect_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::GameService::ReadyResponse>* GameService::Stub::PrepareAsyncStartGameRaw(::grpc::ClientContext* context, const ::GameService::ReadyRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::GameService::ReadyResponse, ::GameService::ReadyRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_StartGame_, context, request);
+::grpc::ClientAsyncResponseReader< ::GameService::ConnectResponse>* GameService::Stub::PrepareAsyncConnectRaw(::grpc::ClientContext* context, const ::GameService::ConnectRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::GameService::ConnectResponse, ::GameService::ConnectRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Connect_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::GameService::ReadyResponse>* GameService::Stub::AsyncStartGameRaw(::grpc::ClientContext* context, const ::GameService::ReadyRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::GameService::ConnectResponse>* GameService::Stub::AsyncConnectRaw(::grpc::ClientContext* context, const ::GameService::ConnectRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
-    this->PrepareAsyncStartGameRaw(context, request, cq);
+    this->PrepareAsyncConnectRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status GameService::Stub::Disconnect(::grpc::ClientContext* context, const ::GameService::DisconnectRequest& request, ::GameService::DisconnectResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::GameService::DisconnectRequest, ::GameService::DisconnectResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Disconnect_, context, request, response);
+}
+
+void GameService::Stub::experimental_async::Disconnect(::grpc::ClientContext* context, const ::GameService::DisconnectRequest* request, ::GameService::DisconnectResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::GameService::DisconnectRequest, ::GameService::DisconnectResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Disconnect_, context, request, response, std::move(f));
+}
+
+void GameService::Stub::experimental_async::Disconnect(::grpc::ClientContext* context, const ::GameService::DisconnectRequest* request, ::GameService::DisconnectResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Disconnect_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::GameService::DisconnectResponse>* GameService::Stub::PrepareAsyncDisconnectRaw(::grpc::ClientContext* context, const ::GameService::DisconnectRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::GameService::DisconnectResponse, ::GameService::DisconnectRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Disconnect_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::GameService::DisconnectResponse>* GameService::Stub::AsyncDisconnectRaw(::grpc::ClientContext* context, const ::GameService::DisconnectRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDisconnectRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -112,15 +137,25 @@ GameService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       GameService_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< GameService::Service, ::GameService::ReadyRequest, ::GameService::ReadyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< GameService::Service, ::GameService::ConnectRequest, ::GameService::ConnectResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](GameService::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::GameService::ReadyRequest* req,
-             ::GameService::ReadyResponse* resp) {
-               return service->StartGame(ctx, req, resp);
+             const ::GameService::ConnectRequest* req,
+             ::GameService::ConnectResponse* resp) {
+               return service->Connect(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       GameService_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< GameService::Service, ::GameService::DisconnectRequest, ::GameService::DisconnectResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](GameService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::GameService::DisconnectRequest* req,
+             ::GameService::DisconnectResponse* resp) {
+               return service->Disconnect(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      GameService_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< GameService::Service, ::GameService::StepRequest, ::GameService::StepResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](GameService::Service* service,
@@ -130,7 +165,7 @@ GameService::Service::Service() {
                return service->MakeStep(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      GameService_method_names[2],
+      GameService_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< GameService::Service, ::GameService::StateRequest, ::GameService::StateResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](GameService::Service* service,
@@ -144,7 +179,14 @@ GameService::Service::Service() {
 GameService::Service::~Service() {
 }
 
-::grpc::Status GameService::Service::StartGame(::grpc::ServerContext* context, const ::GameService::ReadyRequest* request, ::GameService::ReadyResponse* response) {
+::grpc::Status GameService::Service::Connect(::grpc::ServerContext* context, const ::GameService::ConnectRequest* request, ::GameService::ConnectResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status GameService::Service::Disconnect(::grpc::ServerContext* context, const ::GameService::DisconnectRequest* request, ::GameService::DisconnectResponse* response) {
   (void) context;
   (void) request;
   (void) response;

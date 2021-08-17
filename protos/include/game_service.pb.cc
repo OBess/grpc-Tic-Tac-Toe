@@ -17,31 +17,53 @@
 
 PROTOBUF_PRAGMA_INIT_SEG
 namespace GameService {
-constexpr ReadyRequest::ReadyRequest(
+constexpr ConnectRequest::ConnectRequest(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : ready_(false){}
-struct ReadyRequestDefaultTypeInternal {
-  constexpr ReadyRequestDefaultTypeInternal()
+struct ConnectRequestDefaultTypeInternal {
+  constexpr ConnectRequestDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
-  ~ReadyRequestDefaultTypeInternal() {}
+  ~ConnectRequestDefaultTypeInternal() {}
   union {
-    ReadyRequest _instance;
+    ConnectRequest _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ReadyRequestDefaultTypeInternal _ReadyRequest_default_instance_;
-constexpr ReadyResponse::ReadyResponse(
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ConnectRequestDefaultTypeInternal _ConnectRequest_default_instance_;
+constexpr ConnectResponse::ConnectResponse(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : map_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
   , id_(0){}
-struct ReadyResponseDefaultTypeInternal {
-  constexpr ReadyResponseDefaultTypeInternal()
+struct ConnectResponseDefaultTypeInternal {
+  constexpr ConnectResponseDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
-  ~ReadyResponseDefaultTypeInternal() {}
+  ~ConnectResponseDefaultTypeInternal() {}
   union {
-    ReadyResponse _instance;
+    ConnectResponse _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ReadyResponseDefaultTypeInternal _ReadyResponse_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ConnectResponseDefaultTypeInternal _ConnectResponse_default_instance_;
+constexpr DisconnectRequest::DisconnectRequest(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized){}
+struct DisconnectRequestDefaultTypeInternal {
+  constexpr DisconnectRequestDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~DisconnectRequestDefaultTypeInternal() {}
+  union {
+    DisconnectRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT DisconnectRequestDefaultTypeInternal _DisconnectRequest_default_instance_;
+constexpr DisconnectResponse::DisconnectResponse(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized){}
+struct DisconnectResponseDefaultTypeInternal {
+  constexpr DisconnectResponseDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~DisconnectResponseDefaultTypeInternal() {}
+  union {
+    DisconnectResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT DisconnectResponseDefaultTypeInternal _DisconnectResponse_default_instance_;
 constexpr StepRequest::StepRequest(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : x_(0)
@@ -95,24 +117,34 @@ struct StateResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT StateResponseDefaultTypeInternal _StateResponse_default_instance_;
 }  // namespace GameService
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_game_5fservice_2eproto[6];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_game_5fservice_2eproto[8];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_game_5fservice_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_game_5fservice_2eproto = nullptr;
 
 const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_game_5fservice_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::GameService::ReadyRequest, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::GameService::ConnectRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::GameService::ReadyRequest, ready_),
+  PROTOBUF_FIELD_OFFSET(::GameService::ConnectRequest, ready_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::GameService::ReadyResponse, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::GameService::ConnectResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::GameService::ReadyResponse, id_),
-  PROTOBUF_FIELD_OFFSET(::GameService::ReadyResponse, map_),
+  PROTOBUF_FIELD_OFFSET(::GameService::ConnectResponse, id_),
+  PROTOBUF_FIELD_OFFSET(::GameService::ConnectResponse, map_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::GameService::DisconnectRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::GameService::DisconnectResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::GameService::StepRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -143,17 +175,21 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_game_5fservice_2eproto::offset
   PROTOBUF_FIELD_OFFSET(::GameService::StateResponse, map_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(::GameService::ReadyRequest)},
-  { 6, -1, sizeof(::GameService::ReadyResponse)},
-  { 13, -1, sizeof(::GameService::StepRequest)},
-  { 21, -1, sizeof(::GameService::StepResponse)},
-  { 27, -1, sizeof(::GameService::StateRequest)},
-  { 33, -1, sizeof(::GameService::StateResponse)},
+  { 0, -1, sizeof(::GameService::ConnectRequest)},
+  { 6, -1, sizeof(::GameService::ConnectResponse)},
+  { 13, -1, sizeof(::GameService::DisconnectRequest)},
+  { 18, -1, sizeof(::GameService::DisconnectResponse)},
+  { 23, -1, sizeof(::GameService::StepRequest)},
+  { 31, -1, sizeof(::GameService::StepResponse)},
+  { 37, -1, sizeof(::GameService::StateRequest)},
+  { 43, -1, sizeof(::GameService::StateResponse)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::GameService::_ReadyRequest_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::GameService::_ReadyResponse_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::GameService::_ConnectRequest_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::GameService::_ConnectResponse_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::GameService::_DisconnectRequest_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::GameService::_DisconnectResponse_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::GameService::_StepRequest_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::GameService::_StepResponse_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::GameService::_StateRequest_default_instance_),
@@ -161,24 +197,27 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 };
 
 const char descriptor_table_protodef_game_5fservice_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\022game_service.proto\022\013GameService\"\035\n\014Rea"
-  "dyRequest\022\r\n\005ready\030\001 \001(\010\"(\n\rReadyRespons"
-  "e\022\n\n\002id\030\001 \001(\005\022\013\n\003map\030\002 \001(\014\"/\n\013StepReques"
-  "t\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\022\n\n\002id\030\003 \001(\005\"\033\n\014S"
-  "tepResponse\022\013\n\003map\030\002 \001(\014\"\032\n\014StateRequest"
-  "\022\n\n\002id\030\001 \001(\005\";\n\rStateResponse\022\r\n\005isEnd\030\001"
-  " \001(\010\022\016\n\006winner\030\002 \001(\005\022\013\n\003map\030\003 \001(\0142\325\001\n\013Ga"
-  "meService\022B\n\tStartGame\022\031.GameService.Rea"
-  "dyRequest\032\032.GameService.ReadyResponse\022\?\n"
-  "\010MakeStep\022\030.GameService.StepRequest\032\031.Ga"
-  "meService.StepResponse\022A\n\010GetState\022\031.Gam"
-  "eService.StateRequest\032\032.GameService.Stat"
-  "eResponseb\006proto3"
+  "\n\022game_service.proto\022\013GameService\"\037\n\016Con"
+  "nectRequest\022\r\n\005ready\030\001 \001(\010\"*\n\017ConnectRes"
+  "ponse\022\n\n\002id\030\001 \001(\005\022\013\n\003map\030\002 \001(\014\"\023\n\021Discon"
+  "nectRequest\"\024\n\022DisconnectResponse\"/\n\013Ste"
+  "pRequest\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\022\n\n\002id\030\003 \001"
+  "(\005\"\033\n\014StepResponse\022\013\n\003map\030\002 \001(\014\"\032\n\014State"
+  "Request\022\n\n\002id\030\001 \001(\005\";\n\rStateResponse\022\r\n\005"
+  "isEnd\030\001 \001(\010\022\016\n\006winner\030\002 \001(\005\022\013\n\003map\030\003 \001(\014"
+  "2\246\002\n\013GameService\022D\n\007Connect\022\033.GameServic"
+  "e.ConnectRequest\032\034.GameService.ConnectRe"
+  "sponse\022M\n\nDisconnect\022\036.GameService.Disco"
+  "nnectRequest\032\037.GameService.DisconnectRes"
+  "ponse\022\?\n\010MakeStep\022\030.GameService.StepRequ"
+  "est\032\031.GameService.StepResponse\022A\n\010GetSta"
+  "te\022\031.GameService.StateRequest\032\032.GameServ"
+  "ice.StateResponseb\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_game_5fservice_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_game_5fservice_2eproto = {
-  false, false, 497, descriptor_table_protodef_game_5fservice_2eproto, "game_service.proto", 
-  &descriptor_table_game_5fservice_2eproto_once, nullptr, 0, 6,
+  false, false, 625, descriptor_table_protodef_game_5fservice_2eproto, "game_service.proto", 
+  &descriptor_table_game_5fservice_2eproto_once, nullptr, 0, 8,
   schemas, file_default_instances, TableStruct_game_5fservice_2eproto::offsets,
   file_level_metadata_game_5fservice_2eproto, file_level_enum_descriptors_game_5fservice_2eproto, file_level_service_descriptors_game_5fservice_2eproto,
 };
@@ -194,49 +233,49 @@ namespace GameService {
 
 // ===================================================================
 
-class ReadyRequest::_Internal {
+class ConnectRequest::_Internal {
  public:
 };
 
-ReadyRequest::ReadyRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+ConnectRequest::ConnectRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
   RegisterArenaDtor(arena);
-  // @@protoc_insertion_point(arena_constructor:GameService.ReadyRequest)
+  // @@protoc_insertion_point(arena_constructor:GameService.ConnectRequest)
 }
-ReadyRequest::ReadyRequest(const ReadyRequest& from)
+ConnectRequest::ConnectRequest(const ConnectRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ready_ = from.ready_;
-  // @@protoc_insertion_point(copy_constructor:GameService.ReadyRequest)
+  // @@protoc_insertion_point(copy_constructor:GameService.ConnectRequest)
 }
 
-void ReadyRequest::SharedCtor() {
+void ConnectRequest::SharedCtor() {
 ready_ = false;
 }
 
-ReadyRequest::~ReadyRequest() {
-  // @@protoc_insertion_point(destructor:GameService.ReadyRequest)
+ConnectRequest::~ConnectRequest() {
+  // @@protoc_insertion_point(destructor:GameService.ConnectRequest)
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-void ReadyRequest::SharedDtor() {
+void ConnectRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArena() == nullptr);
 }
 
-void ReadyRequest::ArenaDtor(void* object) {
-  ReadyRequest* _this = reinterpret_cast< ReadyRequest* >(object);
+void ConnectRequest::ArenaDtor(void* object) {
+  ConnectRequest* _this = reinterpret_cast< ConnectRequest* >(object);
   (void)_this;
 }
-void ReadyRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+void ConnectRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
 }
-void ReadyRequest::SetCachedSize(int size) const {
+void ConnectRequest::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
 
-void ReadyRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:GameService.ReadyRequest)
+void ConnectRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:GameService.ConnectRequest)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -245,7 +284,7 @@ void ReadyRequest::Clear() {
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* ReadyRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* ConnectRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
@@ -281,9 +320,9 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* ReadyRequest::_InternalSerialize(
+::PROTOBUF_NAMESPACE_ID::uint8* ConnectRequest::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:GameService.ReadyRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:GameService.ConnectRequest)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -297,12 +336,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:GameService.ReadyRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:GameService.ConnectRequest)
   return target;
 }
 
-size_t ReadyRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:GameService.ReadyRequest)
+size_t ConnectRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:GameService.ConnectRequest)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -323,23 +362,23 @@ size_t ReadyRequest::ByteSizeLong() const {
   return total_size;
 }
 
-void ReadyRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:GameService.ReadyRequest)
+void ConnectRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:GameService.ConnectRequest)
   GOOGLE_DCHECK_NE(&from, this);
-  const ReadyRequest* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ReadyRequest>(
+  const ConnectRequest* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ConnectRequest>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:GameService.ReadyRequest)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:GameService.ConnectRequest)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:GameService.ReadyRequest)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:GameService.ConnectRequest)
     MergeFrom(*source);
   }
 }
 
-void ReadyRequest::MergeFrom(const ReadyRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:GameService.ReadyRequest)
+void ConnectRequest::MergeFrom(const ConnectRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:GameService.ConnectRequest)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -350,48 +389,48 @@ void ReadyRequest::MergeFrom(const ReadyRequest& from) {
   }
 }
 
-void ReadyRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:GameService.ReadyRequest)
+void ConnectRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:GameService.ConnectRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void ReadyRequest::CopyFrom(const ReadyRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:GameService.ReadyRequest)
+void ConnectRequest::CopyFrom(const ConnectRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:GameService.ConnectRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool ReadyRequest::IsInitialized() const {
+bool ConnectRequest::IsInitialized() const {
   return true;
 }
 
-void ReadyRequest::InternalSwap(ReadyRequest* other) {
+void ConnectRequest::InternalSwap(ConnectRequest* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   swap(ready_, other->ready_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata ReadyRequest::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata ConnectRequest::GetMetadata() const {
   return GetMetadataStatic();
 }
 
 
 // ===================================================================
 
-class ReadyResponse::_Internal {
+class ConnectResponse::_Internal {
  public:
 };
 
-ReadyResponse::ReadyResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+ConnectResponse::ConnectResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
   RegisterArenaDtor(arena);
-  // @@protoc_insertion_point(arena_constructor:GameService.ReadyResponse)
+  // @@protoc_insertion_point(arena_constructor:GameService.ConnectResponse)
 }
-ReadyResponse::ReadyResponse(const ReadyResponse& from)
+ConnectResponse::ConnectResponse(const ConnectResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   map_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
@@ -400,37 +439,37 @@ ReadyResponse::ReadyResponse(const ReadyResponse& from)
       GetArena());
   }
   id_ = from.id_;
-  // @@protoc_insertion_point(copy_constructor:GameService.ReadyResponse)
+  // @@protoc_insertion_point(copy_constructor:GameService.ConnectResponse)
 }
 
-void ReadyResponse::SharedCtor() {
+void ConnectResponse::SharedCtor() {
 map_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 id_ = 0;
 }
 
-ReadyResponse::~ReadyResponse() {
-  // @@protoc_insertion_point(destructor:GameService.ReadyResponse)
+ConnectResponse::~ConnectResponse() {
+  // @@protoc_insertion_point(destructor:GameService.ConnectResponse)
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-void ReadyResponse::SharedDtor() {
+void ConnectResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArena() == nullptr);
   map_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
-void ReadyResponse::ArenaDtor(void* object) {
-  ReadyResponse* _this = reinterpret_cast< ReadyResponse* >(object);
+void ConnectResponse::ArenaDtor(void* object) {
+  ConnectResponse* _this = reinterpret_cast< ConnectResponse* >(object);
   (void)_this;
 }
-void ReadyResponse::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+void ConnectResponse::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
 }
-void ReadyResponse::SetCachedSize(int size) const {
+void ConnectResponse::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
 
-void ReadyResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:GameService.ReadyResponse)
+void ConnectResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:GameService.ConnectResponse)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -440,7 +479,7 @@ void ReadyResponse::Clear() {
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* ReadyResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* ConnectResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
@@ -484,9 +523,9 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* ReadyResponse::_InternalSerialize(
+::PROTOBUF_NAMESPACE_ID::uint8* ConnectResponse::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:GameService.ReadyResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:GameService.ConnectResponse)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -506,12 +545,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:GameService.ReadyResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:GameService.ConnectResponse)
   return target;
 }
 
-size_t ReadyResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:GameService.ReadyResponse)
+size_t ConnectResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:GameService.ConnectResponse)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -541,23 +580,23 @@ size_t ReadyResponse::ByteSizeLong() const {
   return total_size;
 }
 
-void ReadyResponse::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:GameService.ReadyResponse)
+void ConnectResponse::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:GameService.ConnectResponse)
   GOOGLE_DCHECK_NE(&from, this);
-  const ReadyResponse* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ReadyResponse>(
+  const ConnectResponse* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ConnectResponse>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:GameService.ReadyResponse)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:GameService.ConnectResponse)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:GameService.ReadyResponse)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:GameService.ConnectResponse)
     MergeFrom(*source);
   }
 }
 
-void ReadyResponse::MergeFrom(const ReadyResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:GameService.ReadyResponse)
+void ConnectResponse::MergeFrom(const ConnectResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:GameService.ConnectResponse)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -571,32 +610,346 @@ void ReadyResponse::MergeFrom(const ReadyResponse& from) {
   }
 }
 
-void ReadyResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:GameService.ReadyResponse)
+void ConnectResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:GameService.ConnectResponse)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void ReadyResponse::CopyFrom(const ReadyResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:GameService.ReadyResponse)
+void ConnectResponse::CopyFrom(const ConnectResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:GameService.ConnectResponse)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool ReadyResponse::IsInitialized() const {
+bool ConnectResponse::IsInitialized() const {
   return true;
 }
 
-void ReadyResponse::InternalSwap(ReadyResponse* other) {
+void ConnectResponse::InternalSwap(ConnectResponse* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   map_.Swap(&other->map_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   swap(id_, other->id_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata ReadyResponse::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata ConnectResponse::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+class DisconnectRequest::_Internal {
+ public:
+};
+
+DisconnectRequest::DisconnectRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:GameService.DisconnectRequest)
+}
+DisconnectRequest::DisconnectRequest(const DisconnectRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:GameService.DisconnectRequest)
+}
+
+void DisconnectRequest::SharedCtor() {
+}
+
+DisconnectRequest::~DisconnectRequest() {
+  // @@protoc_insertion_point(destructor:GameService.DisconnectRequest)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void DisconnectRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+}
+
+void DisconnectRequest::ArenaDtor(void* object) {
+  DisconnectRequest* _this = reinterpret_cast< DisconnectRequest* >(object);
+  (void)_this;
+}
+void DisconnectRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void DisconnectRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void DisconnectRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:GameService.DisconnectRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* DisconnectRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* DisconnectRequest::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:GameService.DisconnectRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:GameService.DisconnectRequest)
+  return target;
+}
+
+size_t DisconnectRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:GameService.DisconnectRequest)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void DisconnectRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:GameService.DisconnectRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const DisconnectRequest* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<DisconnectRequest>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:GameService.DisconnectRequest)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:GameService.DisconnectRequest)
+    MergeFrom(*source);
+  }
+}
+
+void DisconnectRequest::MergeFrom(const DisconnectRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:GameService.DisconnectRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+}
+
+void DisconnectRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:GameService.DisconnectRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void DisconnectRequest::CopyFrom(const DisconnectRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:GameService.DisconnectRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool DisconnectRequest::IsInitialized() const {
+  return true;
+}
+
+void DisconnectRequest::InternalSwap(DisconnectRequest* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata DisconnectRequest::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+class DisconnectResponse::_Internal {
+ public:
+};
+
+DisconnectResponse::DisconnectResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:GameService.DisconnectResponse)
+}
+DisconnectResponse::DisconnectResponse(const DisconnectResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:GameService.DisconnectResponse)
+}
+
+void DisconnectResponse::SharedCtor() {
+}
+
+DisconnectResponse::~DisconnectResponse() {
+  // @@protoc_insertion_point(destructor:GameService.DisconnectResponse)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void DisconnectResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+}
+
+void DisconnectResponse::ArenaDtor(void* object) {
+  DisconnectResponse* _this = reinterpret_cast< DisconnectResponse* >(object);
+  (void)_this;
+}
+void DisconnectResponse::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void DisconnectResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void DisconnectResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:GameService.DisconnectResponse)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* DisconnectResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* DisconnectResponse::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:GameService.DisconnectResponse)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:GameService.DisconnectResponse)
+  return target;
+}
+
+size_t DisconnectResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:GameService.DisconnectResponse)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void DisconnectResponse::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:GameService.DisconnectResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  const DisconnectResponse* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<DisconnectResponse>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:GameService.DisconnectResponse)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:GameService.DisconnectResponse)
+    MergeFrom(*source);
+  }
+}
+
+void DisconnectResponse::MergeFrom(const DisconnectResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:GameService.DisconnectResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+}
+
+void DisconnectResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:GameService.DisconnectResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void DisconnectResponse::CopyFrom(const DisconnectResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:GameService.DisconnectResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool DisconnectResponse::IsInitialized() const {
+  return true;
+}
+
+void DisconnectResponse::InternalSwap(DisconnectResponse* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata DisconnectResponse::GetMetadata() const {
   return GetMetadataStatic();
 }
 
@@ -1490,11 +1843,17 @@ void StateResponse::InternalSwap(StateResponse* other) {
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace GameService
 PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::GameService::ReadyRequest* Arena::CreateMaybeMessage< ::GameService::ReadyRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::GameService::ReadyRequest >(arena);
+template<> PROTOBUF_NOINLINE ::GameService::ConnectRequest* Arena::CreateMaybeMessage< ::GameService::ConnectRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::GameService::ConnectRequest >(arena);
 }
-template<> PROTOBUF_NOINLINE ::GameService::ReadyResponse* Arena::CreateMaybeMessage< ::GameService::ReadyResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::GameService::ReadyResponse >(arena);
+template<> PROTOBUF_NOINLINE ::GameService::ConnectResponse* Arena::CreateMaybeMessage< ::GameService::ConnectResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::GameService::ConnectResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::GameService::DisconnectRequest* Arena::CreateMaybeMessage< ::GameService::DisconnectRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::GameService::DisconnectRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::GameService::DisconnectResponse* Arena::CreateMaybeMessage< ::GameService::DisconnectResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::GameService::DisconnectResponse >(arena);
 }
 template<> PROTOBUF_NOINLINE ::GameService::StepRequest* Arena::CreateMaybeMessage< ::GameService::StepRequest >(Arena* arena) {
   return Arena::CreateMessageInternal< ::GameService::StepRequest >(arena);

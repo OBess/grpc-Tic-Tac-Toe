@@ -46,7 +46,7 @@ struct TableStruct_game_5fservice_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[6]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[8]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -55,12 +55,18 @@ struct TableStruct_game_5fservice_2eproto {
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_game_5fservice_2eproto;
 ::PROTOBUF_NAMESPACE_ID::Metadata descriptor_table_game_5fservice_2eproto_metadata_getter(int index);
 namespace GameService {
-class ReadyRequest;
-struct ReadyRequestDefaultTypeInternal;
-extern ReadyRequestDefaultTypeInternal _ReadyRequest_default_instance_;
-class ReadyResponse;
-struct ReadyResponseDefaultTypeInternal;
-extern ReadyResponseDefaultTypeInternal _ReadyResponse_default_instance_;
+class ConnectRequest;
+struct ConnectRequestDefaultTypeInternal;
+extern ConnectRequestDefaultTypeInternal _ConnectRequest_default_instance_;
+class ConnectResponse;
+struct ConnectResponseDefaultTypeInternal;
+extern ConnectResponseDefaultTypeInternal _ConnectResponse_default_instance_;
+class DisconnectRequest;
+struct DisconnectRequestDefaultTypeInternal;
+extern DisconnectRequestDefaultTypeInternal _DisconnectRequest_default_instance_;
+class DisconnectResponse;
+struct DisconnectResponseDefaultTypeInternal;
+extern DisconnectResponseDefaultTypeInternal _DisconnectResponse_default_instance_;
 class StateRequest;
 struct StateRequestDefaultTypeInternal;
 extern StateRequestDefaultTypeInternal _StateRequest_default_instance_;
@@ -75,8 +81,10 @@ struct StepResponseDefaultTypeInternal;
 extern StepResponseDefaultTypeInternal _StepResponse_default_instance_;
 }  // namespace GameService
 PROTOBUF_NAMESPACE_OPEN
-template<> ::GameService::ReadyRequest* Arena::CreateMaybeMessage<::GameService::ReadyRequest>(Arena*);
-template<> ::GameService::ReadyResponse* Arena::CreateMaybeMessage<::GameService::ReadyResponse>(Arena*);
+template<> ::GameService::ConnectRequest* Arena::CreateMaybeMessage<::GameService::ConnectRequest>(Arena*);
+template<> ::GameService::ConnectResponse* Arena::CreateMaybeMessage<::GameService::ConnectResponse>(Arena*);
+template<> ::GameService::DisconnectRequest* Arena::CreateMaybeMessage<::GameService::DisconnectRequest>(Arena*);
+template<> ::GameService::DisconnectResponse* Arena::CreateMaybeMessage<::GameService::DisconnectResponse>(Arena*);
 template<> ::GameService::StateRequest* Arena::CreateMaybeMessage<::GameService::StateRequest>(Arena*);
 template<> ::GameService::StateResponse* Arena::CreateMaybeMessage<::GameService::StateResponse>(Arena*);
 template<> ::GameService::StepRequest* Arena::CreateMaybeMessage<::GameService::StepRequest>(Arena*);
@@ -86,24 +94,24 @@ namespace GameService {
 
 // ===================================================================
 
-class ReadyRequest PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:GameService.ReadyRequest) */ {
+class ConnectRequest PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:GameService.ConnectRequest) */ {
  public:
-  inline ReadyRequest() : ReadyRequest(nullptr) {}
-  virtual ~ReadyRequest();
-  explicit constexpr ReadyRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline ConnectRequest() : ConnectRequest(nullptr) {}
+  virtual ~ConnectRequest();
+  explicit constexpr ConnectRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  ReadyRequest(const ReadyRequest& from);
-  ReadyRequest(ReadyRequest&& from) noexcept
-    : ReadyRequest() {
+  ConnectRequest(const ConnectRequest& from);
+  ConnectRequest(ConnectRequest&& from) noexcept
+    : ConnectRequest() {
     *this = ::std::move(from);
   }
 
-  inline ReadyRequest& operator=(const ReadyRequest& from) {
+  inline ConnectRequest& operator=(const ConnectRequest& from) {
     CopyFrom(from);
     return *this;
   }
-  inline ReadyRequest& operator=(ReadyRequest&& from) noexcept {
+  inline ConnectRequest& operator=(ConnectRequest&& from) noexcept {
     if (GetArena() == from.GetArena()) {
       if (this != &from) InternalSwap(&from);
     } else {
@@ -121,20 +129,20 @@ class ReadyRequest PROTOBUF_FINAL :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return GetMetadataStatic().reflection;
   }
-  static const ReadyRequest& default_instance() {
+  static const ConnectRequest& default_instance() {
     return *internal_default_instance();
   }
-  static inline const ReadyRequest* internal_default_instance() {
-    return reinterpret_cast<const ReadyRequest*>(
-               &_ReadyRequest_default_instance_);
+  static inline const ConnectRequest* internal_default_instance() {
+    return reinterpret_cast<const ConnectRequest*>(
+               &_ConnectRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     0;
 
-  friend void swap(ReadyRequest& a, ReadyRequest& b) {
+  friend void swap(ConnectRequest& a, ConnectRequest& b) {
     a.Swap(&b);
   }
-  inline void Swap(ReadyRequest* other) {
+  inline void Swap(ConnectRequest* other) {
     if (other == this) return;
     if (GetArena() == other->GetArena()) {
       InternalSwap(other);
@@ -142,7 +150,7 @@ class ReadyRequest PROTOBUF_FINAL :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(ReadyRequest* other) {
+  void UnsafeArenaSwap(ConnectRequest* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -150,17 +158,17 @@ class ReadyRequest PROTOBUF_FINAL :
 
   // implements Message ----------------------------------------------
 
-  inline ReadyRequest* New() const final {
-    return CreateMaybeMessage<ReadyRequest>(nullptr);
+  inline ConnectRequest* New() const final {
+    return CreateMaybeMessage<ConnectRequest>(nullptr);
   }
 
-  ReadyRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<ReadyRequest>(arena);
+  ConnectRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ConnectRequest>(arena);
   }
   void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
   void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const ReadyRequest& from);
-  void MergeFrom(const ReadyRequest& from);
+  void CopyFrom(const ConnectRequest& from);
+  void MergeFrom(const ConnectRequest& from);
   PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
   bool IsInitialized() const final;
 
@@ -174,13 +182,13 @@ class ReadyRequest PROTOBUF_FINAL :
   inline void SharedCtor();
   inline void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(ReadyRequest* other);
+  void InternalSwap(ConnectRequest* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "GameService.ReadyRequest";
+    return "GameService.ConnectRequest";
   }
   protected:
-  explicit ReadyRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  explicit ConnectRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
   private:
   static void ArenaDtor(void* object);
   inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -210,7 +218,7 @@ class ReadyRequest PROTOBUF_FINAL :
   void _internal_set_ready(bool value);
   public:
 
-  // @@protoc_insertion_point(class_scope:GameService.ReadyRequest)
+  // @@protoc_insertion_point(class_scope:GameService.ConnectRequest)
  private:
   class _Internal;
 
@@ -223,24 +231,24 @@ class ReadyRequest PROTOBUF_FINAL :
 };
 // -------------------------------------------------------------------
 
-class ReadyResponse PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:GameService.ReadyResponse) */ {
+class ConnectResponse PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:GameService.ConnectResponse) */ {
  public:
-  inline ReadyResponse() : ReadyResponse(nullptr) {}
-  virtual ~ReadyResponse();
-  explicit constexpr ReadyResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline ConnectResponse() : ConnectResponse(nullptr) {}
+  virtual ~ConnectResponse();
+  explicit constexpr ConnectResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  ReadyResponse(const ReadyResponse& from);
-  ReadyResponse(ReadyResponse&& from) noexcept
-    : ReadyResponse() {
+  ConnectResponse(const ConnectResponse& from);
+  ConnectResponse(ConnectResponse&& from) noexcept
+    : ConnectResponse() {
     *this = ::std::move(from);
   }
 
-  inline ReadyResponse& operator=(const ReadyResponse& from) {
+  inline ConnectResponse& operator=(const ConnectResponse& from) {
     CopyFrom(from);
     return *this;
   }
-  inline ReadyResponse& operator=(ReadyResponse&& from) noexcept {
+  inline ConnectResponse& operator=(ConnectResponse&& from) noexcept {
     if (GetArena() == from.GetArena()) {
       if (this != &from) InternalSwap(&from);
     } else {
@@ -258,20 +266,20 @@ class ReadyResponse PROTOBUF_FINAL :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return GetMetadataStatic().reflection;
   }
-  static const ReadyResponse& default_instance() {
+  static const ConnectResponse& default_instance() {
     return *internal_default_instance();
   }
-  static inline const ReadyResponse* internal_default_instance() {
-    return reinterpret_cast<const ReadyResponse*>(
-               &_ReadyResponse_default_instance_);
+  static inline const ConnectResponse* internal_default_instance() {
+    return reinterpret_cast<const ConnectResponse*>(
+               &_ConnectResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     1;
 
-  friend void swap(ReadyResponse& a, ReadyResponse& b) {
+  friend void swap(ConnectResponse& a, ConnectResponse& b) {
     a.Swap(&b);
   }
-  inline void Swap(ReadyResponse* other) {
+  inline void Swap(ConnectResponse* other) {
     if (other == this) return;
     if (GetArena() == other->GetArena()) {
       InternalSwap(other);
@@ -279,7 +287,7 @@ class ReadyResponse PROTOBUF_FINAL :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(ReadyResponse* other) {
+  void UnsafeArenaSwap(ConnectResponse* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -287,17 +295,17 @@ class ReadyResponse PROTOBUF_FINAL :
 
   // implements Message ----------------------------------------------
 
-  inline ReadyResponse* New() const final {
-    return CreateMaybeMessage<ReadyResponse>(nullptr);
+  inline ConnectResponse* New() const final {
+    return CreateMaybeMessage<ConnectResponse>(nullptr);
   }
 
-  ReadyResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<ReadyResponse>(arena);
+  ConnectResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ConnectResponse>(arena);
   }
   void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
   void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const ReadyResponse& from);
-  void MergeFrom(const ReadyResponse& from);
+  void CopyFrom(const ConnectResponse& from);
+  void MergeFrom(const ConnectResponse& from);
   PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
   bool IsInitialized() const final;
 
@@ -311,13 +319,13 @@ class ReadyResponse PROTOBUF_FINAL :
   inline void SharedCtor();
   inline void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(ReadyResponse* other);
+  void InternalSwap(ConnectResponse* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "GameService.ReadyResponse";
+    return "GameService.ConnectResponse";
   }
   protected:
-  explicit ReadyResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  explicit ConnectResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
   private:
   static void ArenaDtor(void* object);
   inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -364,7 +372,7 @@ class ReadyResponse PROTOBUF_FINAL :
   void _internal_set_id(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:GameService.ReadyResponse)
+  // @@protoc_insertion_point(class_scope:GameService.ConnectResponse)
  private:
   class _Internal;
 
@@ -373,6 +381,254 @@ class ReadyResponse PROTOBUF_FINAL :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr map_;
   ::PROTOBUF_NAMESPACE_ID::int32 id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_game_5fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
+class DisconnectRequest PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:GameService.DisconnectRequest) */ {
+ public:
+  inline DisconnectRequest() : DisconnectRequest(nullptr) {}
+  virtual ~DisconnectRequest();
+  explicit constexpr DisconnectRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  DisconnectRequest(const DisconnectRequest& from);
+  DisconnectRequest(DisconnectRequest&& from) noexcept
+    : DisconnectRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline DisconnectRequest& operator=(const DisconnectRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DisconnectRequest& operator=(DisconnectRequest&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const DisconnectRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DisconnectRequest* internal_default_instance() {
+    return reinterpret_cast<const DisconnectRequest*>(
+               &_DisconnectRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(DisconnectRequest& a, DisconnectRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DisconnectRequest* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DisconnectRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline DisconnectRequest* New() const final {
+    return CreateMaybeMessage<DisconnectRequest>(nullptr);
+  }
+
+  DisconnectRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<DisconnectRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const DisconnectRequest& from);
+  void MergeFrom(const DisconnectRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DisconnectRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "GameService.DisconnectRequest";
+  }
+  protected:
+  explicit DisconnectRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    return ::descriptor_table_game_5fservice_2eproto_metadata_getter(kIndexInFileMessages);
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:GameService.DisconnectRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_game_5fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
+class DisconnectResponse PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:GameService.DisconnectResponse) */ {
+ public:
+  inline DisconnectResponse() : DisconnectResponse(nullptr) {}
+  virtual ~DisconnectResponse();
+  explicit constexpr DisconnectResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  DisconnectResponse(const DisconnectResponse& from);
+  DisconnectResponse(DisconnectResponse&& from) noexcept
+    : DisconnectResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline DisconnectResponse& operator=(const DisconnectResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DisconnectResponse& operator=(DisconnectResponse&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const DisconnectResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DisconnectResponse* internal_default_instance() {
+    return reinterpret_cast<const DisconnectResponse*>(
+               &_DisconnectResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(DisconnectResponse& a, DisconnectResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DisconnectResponse* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DisconnectResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline DisconnectResponse* New() const final {
+    return CreateMaybeMessage<DisconnectResponse>(nullptr);
+  }
+
+  DisconnectResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<DisconnectResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const DisconnectResponse& from);
+  void MergeFrom(const DisconnectResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DisconnectResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "GameService.DisconnectResponse";
+  }
+  protected:
+  explicit DisconnectResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    return ::descriptor_table_game_5fservice_2eproto_metadata_getter(kIndexInFileMessages);
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:GameService.DisconnectResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_game_5fservice_2eproto;
 };
@@ -421,7 +677,7 @@ class StepRequest PROTOBUF_FINAL :
                &_StepRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    4;
 
   friend void swap(StepRequest& a, StepRequest& b) {
     a.Swap(&b);
@@ -580,7 +836,7 @@ class StepResponse PROTOBUF_FINAL :
                &_StepResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    5;
 
   friend void swap(StepResponse& a, StepResponse& b) {
     a.Swap(&b);
@@ -724,7 +980,7 @@ class StateRequest PROTOBUF_FINAL :
                &_StateRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    6;
 
   friend void swap(StateRequest& a, StateRequest& b) {
     a.Swap(&b);
@@ -861,7 +1117,7 @@ class StateResponse PROTOBUF_FINAL :
                &_StateResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    7;
 
   friend void swap(StateResponse& a, StateResponse& b) {
     a.Swap(&b);
@@ -991,103 +1247,103 @@ class StateResponse PROTOBUF_FINAL :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// ReadyRequest
+// ConnectRequest
 
 // bool ready = 1;
-inline void ReadyRequest::clear_ready() {
+inline void ConnectRequest::clear_ready() {
   ready_ = false;
 }
-inline bool ReadyRequest::_internal_ready() const {
+inline bool ConnectRequest::_internal_ready() const {
   return ready_;
 }
-inline bool ReadyRequest::ready() const {
-  // @@protoc_insertion_point(field_get:GameService.ReadyRequest.ready)
+inline bool ConnectRequest::ready() const {
+  // @@protoc_insertion_point(field_get:GameService.ConnectRequest.ready)
   return _internal_ready();
 }
-inline void ReadyRequest::_internal_set_ready(bool value) {
+inline void ConnectRequest::_internal_set_ready(bool value) {
   
   ready_ = value;
 }
-inline void ReadyRequest::set_ready(bool value) {
+inline void ConnectRequest::set_ready(bool value) {
   _internal_set_ready(value);
-  // @@protoc_insertion_point(field_set:GameService.ReadyRequest.ready)
+  // @@protoc_insertion_point(field_set:GameService.ConnectRequest.ready)
 }
 
 // -------------------------------------------------------------------
 
-// ReadyResponse
+// ConnectResponse
 
 // int32 id = 1;
-inline void ReadyResponse::clear_id() {
+inline void ConnectResponse::clear_id() {
   id_ = 0;
 }
-inline ::PROTOBUF_NAMESPACE_ID::int32 ReadyResponse::_internal_id() const {
+inline ::PROTOBUF_NAMESPACE_ID::int32 ConnectResponse::_internal_id() const {
   return id_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::int32 ReadyResponse::id() const {
-  // @@protoc_insertion_point(field_get:GameService.ReadyResponse.id)
+inline ::PROTOBUF_NAMESPACE_ID::int32 ConnectResponse::id() const {
+  // @@protoc_insertion_point(field_get:GameService.ConnectResponse.id)
   return _internal_id();
 }
-inline void ReadyResponse::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
+inline void ConnectResponse::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
   
   id_ = value;
 }
-inline void ReadyResponse::set_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
+inline void ConnectResponse::set_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_id(value);
-  // @@protoc_insertion_point(field_set:GameService.ReadyResponse.id)
+  // @@protoc_insertion_point(field_set:GameService.ConnectResponse.id)
 }
 
 // bytes map = 2;
-inline void ReadyResponse::clear_map() {
+inline void ConnectResponse::clear_map() {
   map_.ClearToEmpty();
 }
-inline const std::string& ReadyResponse::map() const {
-  // @@protoc_insertion_point(field_get:GameService.ReadyResponse.map)
+inline const std::string& ConnectResponse::map() const {
+  // @@protoc_insertion_point(field_get:GameService.ConnectResponse.map)
   return _internal_map();
 }
-inline void ReadyResponse::set_map(const std::string& value) {
+inline void ConnectResponse::set_map(const std::string& value) {
   _internal_set_map(value);
-  // @@protoc_insertion_point(field_set:GameService.ReadyResponse.map)
+  // @@protoc_insertion_point(field_set:GameService.ConnectResponse.map)
 }
-inline std::string* ReadyResponse::mutable_map() {
-  // @@protoc_insertion_point(field_mutable:GameService.ReadyResponse.map)
+inline std::string* ConnectResponse::mutable_map() {
+  // @@protoc_insertion_point(field_mutable:GameService.ConnectResponse.map)
   return _internal_mutable_map();
 }
-inline const std::string& ReadyResponse::_internal_map() const {
+inline const std::string& ConnectResponse::_internal_map() const {
   return map_.Get();
 }
-inline void ReadyResponse::_internal_set_map(const std::string& value) {
+inline void ConnectResponse::_internal_set_map(const std::string& value) {
   
   map_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
 }
-inline void ReadyResponse::set_map(std::string&& value) {
+inline void ConnectResponse::set_map(std::string&& value) {
   
   map_.Set(
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:GameService.ReadyResponse.map)
+  // @@protoc_insertion_point(field_set_rvalue:GameService.ConnectResponse.map)
 }
-inline void ReadyResponse::set_map(const char* value) {
+inline void ConnectResponse::set_map(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   map_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
-  // @@protoc_insertion_point(field_set_char:GameService.ReadyResponse.map)
+  // @@protoc_insertion_point(field_set_char:GameService.ConnectResponse.map)
 }
-inline void ReadyResponse::set_map(const void* value,
+inline void ConnectResponse::set_map(const void* value,
     size_t size) {
   
   map_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:GameService.ReadyResponse.map)
+  // @@protoc_insertion_point(field_set_pointer:GameService.ConnectResponse.map)
 }
-inline std::string* ReadyResponse::_internal_mutable_map() {
+inline std::string* ConnectResponse::_internal_mutable_map() {
   
   return map_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
 }
-inline std::string* ReadyResponse::release_map() {
-  // @@protoc_insertion_point(field_release:GameService.ReadyResponse.map)
+inline std::string* ConnectResponse::release_map() {
+  // @@protoc_insertion_point(field_release:GameService.ConnectResponse.map)
   return map_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline void ReadyResponse::set_allocated_map(std::string* map) {
+inline void ConnectResponse::set_allocated_map(std::string* map) {
   if (map != nullptr) {
     
   } else {
@@ -1095,8 +1351,16 @@ inline void ReadyResponse::set_allocated_map(std::string* map) {
   }
   map_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), map,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:GameService.ReadyResponse.map)
+  // @@protoc_insertion_point(field_set_allocated:GameService.ConnectResponse.map)
 }
+
+// -------------------------------------------------------------------
+
+// DisconnectRequest
+
+// -------------------------------------------------------------------
+
+// DisconnectResponse
 
 // -------------------------------------------------------------------
 
@@ -1359,6 +1623,10 @@ inline void StateResponse::set_allocated_map(std::string* map) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

@@ -5,6 +5,7 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <future>
 
 // gRPC
 #include <grpcpp/grpcpp.h>
@@ -18,10 +19,12 @@ using grpc::ServerBuilder;
 using grpc::ServerContext;
 using grpc::Status;
 
+using GameService::ConnectRequest;
+using GameService::ConnectResponse;
+using GameService::DisconnectRequest;
+using GameService::DisconnectResponse;
 using GameService::StateRequest;
 using GameService::StateResponse;
-using GameService::ReadyRequest;
-using GameService::ReadyResponse;
 using GameService::StepRequest;
 using GameService::StepResponse;
 
@@ -48,6 +51,7 @@ namespace server
             // Count players
             int m_players{1};
             const size_t m_size = 3;
+            bool m_end = false;
 
             int m_lastTurn = 2;
             int m_winner = -1;
@@ -56,6 +60,7 @@ namespace server
             std::string BuildMap() const noexcept;
 
             bool isWon() const noexcept;
+            bool filled() const noexcept;
 
         public:
             GameServerImpl();
@@ -66,7 +71,9 @@ namespace server
             GameServerImpl(GameServerImpl &&) = delete;
 
             // Network methods
-            Status StartGame(ServerContext *context, const ReadyRequest *request, ReadyResponse *response) override;
+            Status Connect(ServerContext *context, const ConnectRequest *request, ConnectResponse *response) override;
+
+            Status Disconnect(ServerContext *context, const DisconnectRequest *request, DisconnectResponse *response) override;
 
             Status MakeStep(ServerContext *context, const StepRequest *request, StepResponse *response) override;
 
@@ -75,6 +82,10 @@ namespace server
             // Block to copy
             GameServerImpl &operator=(const GameServerImpl &) = delete;
             GameServerImpl &operator=(const GameServerImpl &&) = delete;
+
+            // Getters
+            bool isEnd() const noexcept;
+            int amoutOfPlayer() const noexcept;
         };
     }
 

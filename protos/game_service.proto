@@ -3,13 +3,21 @@ package GameService;
 
 
 // --------------------------
-message ReadyRequest{
+message ConnectRequest{
     bool ready = 1;
 }
 
-message ReadyResponse{
+message ConnectResponse{
     int32 id = 1;
     bytes map = 2;
+}
+
+
+// --------------------------
+message DisconnectRequest{
+}
+
+message DisconnectResponse{
 }
 
 
@@ -38,7 +46,8 @@ message StateResponse{
 
 // --------------------------
 service GameService{
-    rpc StartGame(ReadyRequest) returns (ReadyResponse);
+    rpc Connect(ConnectRequest) returns (ConnectResponse);
+    rpc Disconnect(DisconnectRequest) returns (DisconnectResponse);
     rpc MakeStep(StepRequest) returns (StepResponse);
     rpc GetState(StateRequest) returns (StateResponse);
 }

@@ -10,15 +10,15 @@ namespace client
         }
 
         // Main method for start
-        std::pair<ReadyResponse, bool> GameClient::Ready() noexcept
+        std::pair<ConnectResponse, bool> GameClient::Connect() noexcept
         {
-            ReadyRequest request;
+            ConnectRequest request;
             request.set_ready(true);
 
-            ReadyResponse response;
+            ConnectResponse response;
             ClientContext context;
 
-            Status status = m_stub->StartGame(&context, request, &response);
+            Status status = m_stub->Connect(&context, request, &response);
 
             if (status.ok())
             {
@@ -29,6 +29,21 @@ namespace client
                 std::cout << RED << status.error_code() << ": " << status.error_message() << NC << std::endl;
 
             return {response, status.ok()};
+        }
+
+        void GameClient::Disconnect() noexcept
+        {
+            DisconnectRequest request;
+            DisconnectResponse response;
+            ClientContext context;
+
+            Status status = m_stub.get()->Disconnect(&context, request, &response);
+
+            if (status.ok())
+            {
+            }
+            else
+                std::cout << RED << status.error_code() << ": " << status.error_message() << NC << std::endl;
         }
 
         // Make step
@@ -84,7 +99,7 @@ namespace client
     {
         client::GameClient clt(grpc::CreateChannel(ip, grpc::InsecureChannelCredentials()));
 
-        auto readyResponse = clt.Ready();
+        auto readyResponse = clt.Connect();
         if (!readyResponse.second)
             return;
 
@@ -121,14 +136,20 @@ namespace client
             {
                 stateResponse = clt.GetState();
                 map = stateResponse.map();
-            } while (map == "");
+            } while (map == "" && !stateResponse.isend());
 
             std::cout << "Board: " << std::endl;
             std::cout << map << std::endl;
 
         } while (!stateResponse.isend());
+        clt.Disconnect();
 
-        std::cout << REDB << "The winner is " << (char)stateResponse.winner() << NC << std::endl;
+        stateResponse = clt.GetState();
+        auto winner = stateResponse.winner();
+        if (winner == -1)
+            std::cout << REDB << "Draw!" << NC << std::endl;
+        else
+            std::cout << REDB << "The winner is " << (winner % 2 ? 'x' : 'o') << NC << std::endl;
         std::cout << YEL << "End of game" << NC << std::endl;
     }
 };

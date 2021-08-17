@@ -17,10 +17,12 @@ using grpc::Channel;
 using grpc::ClientContext;
 using grpc::Status;
 
+using GameService::ConnectRequest;
+using GameService::ConnectResponse;
+using GameService::DisconnectRequest;
+using GameService::DisconnectResponse;
 using GameService::StateRequest;
 using GameService::StateResponse;
-using GameService::ReadyRequest;
-using GameService::ReadyResponse;
 using GameService::StepRequest;
 using GameService::StepResponse;
 
@@ -53,7 +55,10 @@ namespace client
             GameClient(GameClient &&) = delete;
 
             // Main method for start
-            std::pair<ReadyResponse, bool> Ready() noexcept;
+            std::pair<ConnectResponse, bool> Connect() noexcept;
+
+            // Main method for end
+            void Disconnect() noexcept;
 
             // Make step
             StepResponse Step(unsigned x, unsigned y) noexcept;
