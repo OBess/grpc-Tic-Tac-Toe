@@ -16,8 +16,7 @@ namespace server
         int m_lastTurn = 2;
         int m_winner = -1;
 
-        std::mutex m_connectMutex;
-        std::mutex m_disconnectMutex;
+        std::mutex m_con_disMutex;
 
         // Build instance of map in string type
         std::string BuildMap() const noexcept;
@@ -162,7 +161,7 @@ namespace server
     // Network methods
     Status GameServerImpl::Connect(ServerContext *context, const ConnectRequest *request, ConnectResponse *response)
     {
-        std::unique_lock lk(m_connectMutex);
+        std::unique_lock lk(m_con_disMutex);
         if (m_players > 2)
             return {grpc::StatusCode::UNAVAILABLE, "Two player are connected."};
 
@@ -177,7 +176,7 @@ namespace server
 
     Status GameServerImpl::Disconnect(ServerContext *context, const DisconnectRequest *request, DisconnectResponse *response)
     {
-        std::unique_lock lk(m_disconnectMutex);
+        std::unique_lock lk(m_con_disMutex);
         --m_players;
         std::cout << YEL << "Player disconnected." << NC << std::endl;
 
